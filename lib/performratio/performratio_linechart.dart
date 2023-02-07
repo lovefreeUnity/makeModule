@@ -194,7 +194,7 @@ class _PerformRatioLineChartState extends State<PerformRatioLineChart> {
     spotList.addAll(List<FlSpot>.generate(
       7,
       (index) =>FlSpot(index.toDouble(), performRatioList[index + startIndex])
-    );
+    ));
     return spotList;
   }
 
