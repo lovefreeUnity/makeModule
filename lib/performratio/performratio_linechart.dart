@@ -165,55 +165,7 @@ class _PerformRatioLineChartState extends State<PerformRatioLineChart> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  onTap: () {
-                    if (startIndex - 7 >= 0) {
-                      startIndex -= 7;
-                    }
-                    setState(() {
-                      showLineBarSpotTooltip = null;
-                    });
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                        color: Color(0xFF747474),
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Icon(
-                      Icons.arrow_left_outlined,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    if (startIndex + 7 < dateList.length) {
-                      startIndex += 7;
-                      addPerformRatioList();
-                    }
-                    setState(() {
-                      showLineBarSpotTooltip = null;
-                    });
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                        color: Color(0xFF747474),
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Icon(
-                      Icons.arrow_right_outlined,
-                      color: Colors.white,
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
+          dataIndexButtons(),
           SizedBox(
             height: 24,
           ),
@@ -356,7 +308,63 @@ class _PerformRatioLineChartState extends State<PerformRatioLineChart> {
 
     return bottomTitle;
   }
-
+  Widget dataIndexButtons(){
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          leftButton(),
+          rightButton()
+        ],
+      ),
+    );
+  }
+  InkWell leftButton(){
+    return InkWell(
+      onTap: () {
+        if (startIndex - 7 >= 0) {
+          startIndex -= 7;
+        }
+        setState(() {
+          showLineBarSpotTooltip = null;
+        });
+      },
+      child: Container(
+        padding: EdgeInsets.all(4),
+        decoration: BoxDecoration(
+            color: Color(0xFF747474),
+            borderRadius: BorderRadius.circular(8)),
+        child: Icon(
+          Icons.arrow_left_outlined,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+  InkWell rightButton(){
+    return InkWell(
+      onTap: () {
+        if (startIndex + 7 < dateList.length) {
+          startIndex += 7;
+          addPerformRatioList();
+        }
+        setState(() {
+          showLineBarSpotTooltip = null;
+        });
+      },
+      child: Container(
+        padding: EdgeInsets.all(4),
+        decoration: BoxDecoration(
+            color: Color(0xFF747474),
+            borderRadius: BorderRadius.circular(8)),
+        child: Icon(
+          Icons.arrow_right_outlined,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
   addPerformRatioList() {
     performRatioList.addAll(List.generate(
         7, (index) => performRatioDataList[startIndex + index].toDouble()));
