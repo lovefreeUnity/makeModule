@@ -1,14 +1,14 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class PerformRatioLineChart extends StatefulWidget {
-  const PerformRatioLineChart({Key? key}) : super(key: key);
+class ExerciseRatioLineChart extends StatefulWidget {
+  const ExerciseRatioLineChart({Key? key}) : super(key: key);
 
   @override
-  State<PerformRatioLineChart> createState() => _PerformRatioLineChartState();
+  State<ExerciseRatioLineChart> createState() => _ExerciseRatioLineChartState();
 }
 
-class _PerformRatioLineChartState extends State<PerformRatioLineChart> {
+class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
   List<String> dateList = [
     '07.01',
     '07.02',
