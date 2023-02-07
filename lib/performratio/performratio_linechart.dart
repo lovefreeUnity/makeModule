@@ -172,6 +172,7 @@ class _PerformRatioLineChartState extends State<PerformRatioLineChart> {
           ),
           PerformRatioAverage(
             performRatioList: performRatioList,
+            startIndex: startIndex,
           )
         ],
       ),
@@ -328,9 +329,10 @@ class _PerformRatioLineChartState extends State<PerformRatioLineChart> {
 }
 
 class PerformRatioAverage extends StatelessWidget {
-  PerformRatioAverage({super.key, this.performRatioList});
+  PerformRatioAverage({super.key,required this.performRatioList,required this.startIndex});
 
-  List<double>? performRatioList;
+  List<double> performRatioList;
+  int startIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -362,8 +364,7 @@ class PerformRatioAverage extends StatelessWidget {
                   width: 8,
                 ),
                 Text(
-                  performRatioList != null ? "${getAverage(performRatioList!)}"
-                      : '',
+                  "${getAverage(performRatioList, startIndex)}",
                   style: TextStyle(
                       fontSize: 20, height: 1.5, fontWeight: FontWeight.bold),
                 )
@@ -379,9 +380,9 @@ class PerformRatioAverage extends StatelessWidget {
   }
 }
 
-getAverage(List<double> list) {
+getAverage(List<double> list, int startIndex) {
   double sum = 0;
-  for (int i = 0; i < 7; i++) {
+  for (int i = startIndex; i < startIndex + 7; i++) {
     sum += list[i];
   }
   return (sum / 7).floor();
