@@ -362,7 +362,8 @@ class PerformRatioAverage extends StatelessWidget {
                   width: 8,
                 ),
                 Text(
-                  performRatioList != null ? getAverage(performRatioList!) : '',
+                  performRatioList != null ? "${getAverage(performRatioList!)}"
+                      : '',
                   style: TextStyle(
                       fontSize: 20, height: 1.5, fontWeight: FontWeight.bold),
                 )
