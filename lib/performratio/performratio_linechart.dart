@@ -308,9 +308,6 @@ class _PerformRatioLineChartState extends State<PerformRatioLineChart> {
     return List<LineTooltipItem>.generate(
         lineBarSpotList.length,
         (index) => LineTooltipItem(
-            // lineBarSpotList[index].y.floor() > -1
-            //     ? "${lineBarSpotList[index].y.floor()}"
-            //     : "",
             "${lineBarSpotList[index].y.floor()}",
             const TextStyle(
               fontSize: 14,
@@ -343,8 +340,6 @@ class _PerformRatioLineChartState extends State<PerformRatioLineChart> {
   }
 
   Widget bottomTitleWidget(double value, TitleMeta meta) {
-    // String text =
-    //     value > 0 && value < 8 ? dateList[value.floor()-1 + startIndex] : "";
     String text = dateList[value.floor() + startIndex];
     TextStyle style = const TextStyle(fontSize: 12, height: 1.5);
     return SideTitleWidget(
@@ -357,11 +352,8 @@ class _PerformRatioLineChartState extends State<PerformRatioLineChart> {
   }
 
   addPerformRatioList() {
-    // performRatioList.add(-1);
     performRatioList.addAll(List.generate(
         7, (index) => performRatioDataList[startIndex + index].toDouble()));
-    // performRatioList.add(-1);
-    // print(performRatioList);
   }
 }
 
