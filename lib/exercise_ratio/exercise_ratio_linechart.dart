@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:grapth/res/everex_theme.dart';
 
 class ExerciseRatioLineChart extends StatefulWidget {
   const ExerciseRatioLineChart({Key? key}) : super(key: key);
@@ -64,7 +65,7 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: MORAColor.white,
       padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -75,7 +76,7 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
             child: Text(
               "운동 수행률",
-              style: TextStyle(fontSize: 16, height: 1.5),
+              style: moraText.fontSize16,
             ),
           ),
           SizedBox(
@@ -83,7 +84,6 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
           ),
           Container(
             child: Container(
-              color: Colors.white,
               height: 201,
               padding: EdgeInsets.fromLTRB(16, 0, 32, 0),
               child: LineChart(
@@ -94,7 +94,7 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
                     drawHorizontalLine: true,
                     getDrawingHorizontalLine: (double) {
                       return FlLine(
-                        color: Color(0xFFF2F2F2),
+                        color: MORAColor.gray5,
                         strokeWidth: 1,
                       );
                     },
@@ -104,10 +104,10 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
                     show: true,
                     border: Border(
                         top: BorderSide(
-                          color: Color(0xFfF2F2F2),
+                          color: MORAColor.gray5,
                         ),
                         bottom: BorderSide(
-                          color: Color(0xFFDDDDDD),
+                          color: MORAColor.gray4,
                         )),
                   ),
                   minY: values['minY'],
@@ -118,7 +118,6 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
                     LineChartBarData(
                       isCurved: false,
                       show: true,
-                      color: const Color(0xFF07BEB8),
                       spots: spotList(),
                       dotData: FlDotData(
                         show: true,
@@ -138,11 +137,11 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
                         fitInsideHorizontally: true,
                         fitInsideVertically: true,
                         tooltipMargin: 5,
+                        tooltipPadding: EdgeInsets.fromLTRB(8, 4, 8, 4),
                         maxContentWidth: double.infinity,
                         tooltipRoundedRadius: 4,
-                        tooltipBgColor: const Color(0xFFF0FCFC),
-                        tooltipBorder:
-                            const BorderSide(color: Color(0xFFF2F2F2)),
+                        tooltipBgColor: MORAColor.primaryColor.shade100,
+                        tooltipBorder: const BorderSide(color: MORAColor.gray5),
                         getTooltipItems: lineTooltipItems,
                       ),
                       touchCallback: (event, response) async {
@@ -161,7 +160,6 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
                           AxisTitles(sideTitles: SideTitles(showTitles: false)),
                       leftTitles: createLeftTitleWidget(),
                       bottomTitles: createBottomTitleWidget()),
-                  // backgroundColor: Color(0xFFFFFFFF)
                 ),
               ),
             ),
@@ -182,19 +180,19 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
   FlDotPainter dotPainter(
       FlSpot spot, double offsetX, LineChartBarData barData, int index) {
     return FlDotCirclePainter(
-        color: Color(0xFF9CE5E3),
-        radius: 4,
-        strokeColor: Color(0xFF07BEB8),
+        color: MORAColor.primaryColor.shade300,
+        radius: 5,
+        strokeColor: MORAColor.primaryColor.shade500,
         strokeWidth: 2,
-        circleBorderColor: Colors.white);
+        circleBorderColor: MORAColor.white);
   }
 
   List<FlSpot> spotList() {
     List<FlSpot> spotList = [];
     spotList.addAll(List<FlSpot>.generate(
-      7,
-      (index) =>FlSpot(index.toDouble(), exerciseRatioList[index + startIndexForGetData])
-    ));
+        7,
+        (index) => FlSpot(index.toDouble(),
+            exerciseRatioList[index + startIndexForGetData])));
     return spotList;
   }
 
@@ -203,15 +201,12 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
       lineBarSpotList.length,
       (index) => LineTooltipItem(
           "${lineBarSpotList[index].y.floor()}",
-          const TextStyle(
-            fontSize: 14,
-            height: 1.5,
-          ),
+          moraText.fontSize16.copyWith(
+              color: MORAColor.mintColorSub, fontWeight: FontWeight.w700),
           children: [
             TextSpan(
                 text: " %",
-                style: TextStyle(
-                    fontSize: 14, height: 1.5, color: Color(0xFF747474)))
+                style: moraText.fontSize14.copyWith(color: MORAColor.gray2))
           ],
           showTooltipMode:
               lineBarSpotList[index].y > 30 && lineBarSpotList[index].y < 71
@@ -221,10 +216,8 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
   }
 
   AxisTitles createLeftTitleWidget() {
-    TextStyle leftTitleTextStyle = const TextStyle(
-      fontSize: 12,
-      height: 1.5,
-    );
+    TextStyle leftTitleTextStyle =
+        moraText.fontSize12.copyWith(color: MORAColor.gray3);
     AxisTitles leftTitle = AxisTitles(
       sideTitles: SideTitles(
         showTitles: true,
@@ -243,7 +236,8 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
   }
 
   AxisTitles createBottomTitleWidget() {
-    TextStyle bottomTitleTextStyle = const TextStyle(fontSize: 12, height: 1.5);
+    TextStyle bottomTitleTextStyle =
+        TextStyle(color: MORAColor.gray1, fontSize: 12, height: 1.5);
     AxisTitles bottomTitle = AxisTitles(
       sideTitles: SideTitles(
           interval: 1,
@@ -288,10 +282,10 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
       child: Container(
         padding: EdgeInsets.all(4),
         decoration: BoxDecoration(
-            color: Color(0xFF747474), borderRadius: BorderRadius.circular(8)),
+            color: MORAColor.gray2, borderRadius: BorderRadius.circular(8)),
         child: Icon(
           Icons.arrow_left_outlined,
-          color: Colors.white,
+          color: MORAColor.white,
         ),
       ),
     );
@@ -311,10 +305,10 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
       child: Container(
         padding: EdgeInsets.all(4),
         decoration: BoxDecoration(
-            color: Color(0xFF747474), borderRadius: BorderRadius.circular(8)),
+            color: MORAColor.gray2, borderRadius: BorderRadius.circular(8)),
         child: Icon(
           Icons.arrow_right_outlined,
-          color: Colors.white,
+          color: MORAColor.white,
         ),
       ),
     );
@@ -322,12 +316,15 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
 
   addExerciseRatioList() {
     exerciseRatioList.addAll(List.generate(
-        7, (index) => exerciseRatioDataList[startIndexForGetData + index].toDouble()));
+        7,
+        (index) =>
+            exerciseRatioDataList[startIndexForGetData + index].toDouble()));
   }
 }
 
 class ExerciseRatioAverage extends StatelessWidget {
-  ExerciseRatioAverage({super.key,required this.exerciseRatioList,required this.startIndex});
+  ExerciseRatioAverage(
+      {super.key, required this.exerciseRatioList, required this.startIndex});
 
   List<double> exerciseRatioList;
   int startIndex;
@@ -338,9 +335,9 @@ class ExerciseRatioAverage extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
       child: Container(
         decoration: BoxDecoration(
-            color: Color(0xFFF9F9F9),
+            color: MORAColor.gray6,
             border: Border.all(
-              color: Color(0xFFDDDDDD),
+              color: MORAColor.gray4,
             ),
             borderRadius: const BorderRadius.all(Radius.circular(8))),
         child: Column(
@@ -356,15 +353,16 @@ class ExerciseRatioAverage extends StatelessWidget {
               children: [
                 Text(
                   "평균",
-                  style: TextStyle(fontSize: 14, height: 1.5),
+                  style: moraText.fontSize14.copyWith(color: MORAColor.gray2),
                 ),
                 SizedBox(
                   width: 8,
                 ),
                 Text(
                   "${getAverage(exerciseRatioList, startIndex)}",
-                  style: TextStyle(
-                      fontSize: 20, height: 1.5, fontWeight: FontWeight.bold),
+                  style: moraText.fontSize20.copyWith(
+                      color: MORAColor.primaryColor.shade500,
+                      fontWeight: FontWeight.w700),
                 )
               ],
             ),
