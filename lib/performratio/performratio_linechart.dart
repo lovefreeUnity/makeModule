@@ -155,27 +155,10 @@ class _PerformRatioLineChartState extends State<PerformRatioLineChart> {
                         }
                       }),
                   titlesData: FlTitlesData(
-                    topTitles: AxisTitles(
-                        sideTitles: SideTitles(
-                      showTitles: false,
-                    )),
-                    rightTitles:
-                        AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                    leftTitles: AxisTitles(
-                        sideTitles: SideTitles(
-                            showTitles: true,
-                            interval: 20,
-                            reservedSize: 38,
-                            getTitlesWidget: leftTitleWidget)),
-                    //그래프 바텀 영역
-                    bottomTitles: AxisTitles(
-                      sideTitles: SideTitles(
-                        interval: 1,
-                        showTitles: true,
-                        reservedSize: 30,
-                        getTitlesWidget: bottomTitleWidget,
-                      ),
-                    ),
+                    topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                    rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                    leftTitles: createLeftTitleWidget(),
+                    bottomTitles: createBottomTitleWidget()
                   ),
                   // backgroundColor: Color(0xFFFFFFFF)
                 ),
@@ -322,45 +305,68 @@ class _PerformRatioLineChartState extends State<PerformRatioLineChart> {
             showTooltipMode:
                 lineBarSpotList[index].y > 30 && lineBarSpotList[index].y < 71
                     ? TooltipMode.top
-                    : TooltipMode.bottom));
+                    : TooltipMode.bottom),
+    );
   }
 
-  Widget leftTitleWidget(double ratio, TitleMeta meta) {
-    return SideTitleWidget(
-        axisSide: meta.axisSide,
-        child: Text(
-          "${ratio.floor()}%",
-          textScaleFactor: 1,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 12,
-            height: 1.5,
-          ),
-        ));
+  AxisTitles createLeftTitleWidget() {
+    TextStyle leftTitleTextStyle = const TextStyle(
+      fontSize: 12,
+      height: 1.5,
+    );
+    AxisTitles leftTitle = AxisTitles(
+        sideTitles: SideTitles(
+            showTitles: true,
+            interval: 20,
+            reservedSize: 38,
+            getTitlesWidget: (double ratio, TitleMeta meta) => SideTitleWidget(
+                axisSide: meta.axisSide,
+                child: Text(
+                  "${ratio.floor()}%",
+                  textScaleFactor: 1,
+                  textAlign: TextAlign.center,
+                  style: leftTitleTextStyle
+                ),
+            ),
+        ),
+    );
+    return leftTitle;
   }
 
-  Widget bottomTitleWidget(double value, TitleMeta meta) {
-    String text = dateList[value.floor() + startIndex];
-    TextStyle style = const TextStyle(fontSize: 12, height: 1.5);
-    return SideTitleWidget(
-        axisSide: meta.axisSide,
-        space: 5,
-        child: Text(
-          text,
-          style: style,
-        ));
+  AxisTitles createBottomTitleWidget() {
+    TextStyle bottomTitleTextStyle =  const TextStyle(fontSize: 12, height: 1.5);
+    AxisTitles bottomTitle = AxisTitles(
+      sideTitles: SideTitles(
+        interval: 1,
+        showTitles: true,
+        reservedSize: 30,
+        getTitlesWidget: (double value, TitleMeta meta){
+          String text = dateList[value.floor() + startIndex];
+          return SideTitleWidget(
+            axisSide: meta.axisSide,
+            space: 5,
+            child: Text(
+              text,
+              style: bottomTitleTextStyle,
+            ),
+          );
+        }
+      ),
+    );
+
+    return bottomTitle;
   }
 
   addPerformRatioList() {
     performRatioList.addAll(List.generate(
         7, (index) => performRatioDataList[startIndex + index].toDouble()));
   }
-}
 
-getAverage(List<double> list) {
-  double sum = 0;
-  for (int i = 0; i < 7; i++) {
-    sum += list[i];
+  getAverage(List<double> list) {
+    double sum = 0;
+    for (int i = 0; i < 7; i++) {
+      sum += list[i];
+    }
+    return (sum / 7).floor();
   }
-  return (sum / 7).floor();
 }
