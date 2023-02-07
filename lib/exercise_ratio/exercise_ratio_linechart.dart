@@ -25,7 +25,7 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
     '07.13',
     '07.14',
   ];
-  List<int> performRatioDataList = [
+  List<int> exerciseRatioDataList = [
     40,
     58,
     62,
@@ -41,13 +41,13 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
     71,
     100,
   ];
-  int startIndex = 0;
+  int startIndexForGetData = 0;
 
   int showingTooltip = -1;
 
   LineBarSpot? showLineBarSpotTooltip;
 
-  List<double> performRatioList = [];
+  List<double> exerciseRatioList = [];
 
   Map<String, double> values = {
     'minY': 0,
@@ -58,7 +58,7 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
 
   @override
   void initState() {
-    addPerformRatioList();
+    addExerciseRatioList();
   }
 
   @override
@@ -170,9 +170,9 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
           SizedBox(
             height: 24,
           ),
-          PerformRatioAverage(
-            performRatioList: performRatioList,
-            startIndex: startIndex,
+          ExerciseRatioAverage(
+            exerciseRatioList: exerciseRatioList,
+            startIndex: startIndexForGetData,
           )
         ],
       ),
@@ -180,7 +180,7 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
   }
 
   FlDotPainter dotPainter(
-      FlSpot spot, double percent, LineChartBarData barData, int index) {
+      FlSpot spot, double offsetX, LineChartBarData barData, int index) {
     return FlDotCirclePainter(
         color: Color(0xFF9CE5E3),
         radius: 4,
@@ -193,7 +193,7 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
     List<FlSpot> spotList = [];
     spotList.addAll(List<FlSpot>.generate(
       7,
-      (index) =>FlSpot(index.toDouble(), performRatioList[index + startIndex])
+      (index) =>FlSpot(index.toDouble(), exerciseRatioList[index + startIndexForGetData])
     ));
     return spotList;
   }
@@ -250,7 +250,7 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
           showTitles: true,
           reservedSize: 30,
           getTitlesWidget: (double value, TitleMeta meta) {
-            String text = dateList[value.floor() + startIndex];
+            String text = dateList[value.floor() + startIndexForGetData];
             return SideTitleWidget(
               axisSide: meta.axisSide,
               space: 5,
@@ -278,8 +278,8 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
   InkWell leftButton() {
     return InkWell(
       onTap: () {
-        if (startIndex - 7 >= 0) {
-          startIndex -= 7;
+        if (startIndexForGetData - 7 >= 0) {
+          startIndexForGetData -= 7;
         }
         setState(() {
           showLineBarSpotTooltip = null;
@@ -300,9 +300,9 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
   InkWell rightButton() {
     return InkWell(
       onTap: () {
-        if (startIndex + 7 < dateList.length) {
-          startIndex += 7;
-          addPerformRatioList();
+        if (startIndexForGetData + 7 < dateList.length) {
+          startIndexForGetData += 7;
+          addExerciseRatioList();
         }
         setState(() {
           showLineBarSpotTooltip = null;
@@ -320,16 +320,16 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
     );
   }
 
-  addPerformRatioList() {
-    performRatioList.addAll(List.generate(
-        7, (index) => performRatioDataList[startIndex + index].toDouble()));
+  addExerciseRatioList() {
+    exerciseRatioList.addAll(List.generate(
+        7, (index) => exerciseRatioDataList[startIndexForGetData + index].toDouble()));
   }
 }
 
-class PerformRatioAverage extends StatelessWidget {
-  PerformRatioAverage({super.key,required this.performRatioList,required this.startIndex});
+class ExerciseRatioAverage extends StatelessWidget {
+  ExerciseRatioAverage({super.key,required this.exerciseRatioList,required this.startIndex});
 
-  List<double> performRatioList;
+  List<double> exerciseRatioList;
   int startIndex;
 
   @override
@@ -362,7 +362,7 @@ class PerformRatioAverage extends StatelessWidget {
                   width: 8,
                 ),
                 Text(
-                  "${getAverage(performRatioList, startIndex)}",
+                  "${getAverage(exerciseRatioList, startIndex)}",
                   style: TextStyle(
                       fontSize: 20, height: 1.5, fontWeight: FontWeight.bold),
                 )
