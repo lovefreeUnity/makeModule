@@ -155,11 +155,12 @@ class _PerformRatioLineChartState extends State<PerformRatioLineChart> {
                         }
                       }),
                   titlesData: FlTitlesData(
-                    topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                    rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                    leftTitles: createLeftTitleWidget(),
-                    bottomTitles: createBottomTitleWidget()
-                  ),
+                      topTitles:
+                          AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                      rightTitles:
+                          AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                      leftTitles: createLeftTitleWidget(),
+                      bottomTitles: createBottomTitleWidget()),
                   // backgroundColor: Color(0xFFFFFFFF)
                 ),
               ),
@@ -169,50 +170,9 @@ class _PerformRatioLineChartState extends State<PerformRatioLineChart> {
           SizedBox(
             height: 24,
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Color(0xFFF9F9F9),
-                border: Border.all(
-                  color: Color(0xFFDDDDDD),
-                ),
-                borderRadius: const BorderRadius.all(Radius.circular(8))
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "평균",
-                        style: TextStyle(fontSize: 14, height: 1.5),
-                      ),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Text(
-                        "87%",
-                        style: TextStyle(
-                            fontSize: 20,
-                            height: 1.5,
-                            fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                ],
-              ),
-            ),
-          ),
+          PerformRatioAverage(
+            performRatioList: performRatioList,
+          )
         ],
       ),
     );
@@ -241,23 +201,23 @@ class _PerformRatioLineChartState extends State<PerformRatioLineChart> {
 
   List<LineTooltipItem> lineTooltipItems(List<LineBarSpot> lineBarSpotList) {
     return List<LineTooltipItem>.generate(
-        lineBarSpotList.length,
-        (index) => LineTooltipItem(
-            "${lineBarSpotList[index].y.floor()}",
-            const TextStyle(
-              fontSize: 14,
-              height: 1.5,
-            ),
-            children: [
-              TextSpan(
-                  text: " %",
-                  style: TextStyle(
-                      fontSize: 14, height: 1.5, color: Color(0xFF747474)))
-            ],
-            showTooltipMode:
-                lineBarSpotList[index].y > 30 && lineBarSpotList[index].y < 71
-                    ? TooltipMode.top
-                    : TooltipMode.bottom),
+      lineBarSpotList.length,
+      (index) => LineTooltipItem(
+          "${lineBarSpotList[index].y.floor()}",
+          const TextStyle(
+            fontSize: 14,
+            height: 1.5,
+          ),
+          children: [
+            TextSpan(
+                text: " %",
+                style: TextStyle(
+                    fontSize: 14, height: 1.5, color: Color(0xFF747474)))
+          ],
+          showTooltipMode:
+              lineBarSpotList[index].y > 30 && lineBarSpotList[index].y < 71
+                  ? TooltipMode.top
+                  : TooltipMode.bottom),
     );
   }
 
@@ -267,60 +227,56 @@ class _PerformRatioLineChartState extends State<PerformRatioLineChart> {
       height: 1.5,
     );
     AxisTitles leftTitle = AxisTitles(
-        sideTitles: SideTitles(
-            showTitles: true,
-            interval: 20,
-            reservedSize: 38,
-            getTitlesWidget: (double ratio, TitleMeta meta) => SideTitleWidget(
-                axisSide: meta.axisSide,
-                child: Text(
-                  "${ratio.floor()}%",
-                  textScaleFactor: 1,
-                  textAlign: TextAlign.center,
-                  style: leftTitleTextStyle
-                ),
-            ),
+      sideTitles: SideTitles(
+        showTitles: true,
+        interval: 20,
+        reservedSize: 38,
+        getTitlesWidget: (double ratio, TitleMeta meta) => SideTitleWidget(
+          axisSide: meta.axisSide,
+          child: Text("${ratio.floor()}%",
+              textScaleFactor: 1,
+              textAlign: TextAlign.center,
+              style: leftTitleTextStyle),
         ),
+      ),
     );
     return leftTitle;
   }
 
   AxisTitles createBottomTitleWidget() {
-    TextStyle bottomTitleTextStyle =  const TextStyle(fontSize: 12, height: 1.5);
+    TextStyle bottomTitleTextStyle = const TextStyle(fontSize: 12, height: 1.5);
     AxisTitles bottomTitle = AxisTitles(
       sideTitles: SideTitles(
-        interval: 1,
-        showTitles: true,
-        reservedSize: 30,
-        getTitlesWidget: (double value, TitleMeta meta){
-          String text = dateList[value.floor() + startIndex];
-          return SideTitleWidget(
-            axisSide: meta.axisSide,
-            space: 5,
-            child: Text(
-              text,
-              style: bottomTitleTextStyle,
-            ),
-          );
-        }
-      ),
+          interval: 1,
+          showTitles: true,
+          reservedSize: 30,
+          getTitlesWidget: (double value, TitleMeta meta) {
+            String text = dateList[value.floor() + startIndex];
+            return SideTitleWidget(
+              axisSide: meta.axisSide,
+              space: 5,
+              child: Text(
+                text,
+                style: bottomTitleTextStyle,
+              ),
+            );
+          }),
     );
 
     return bottomTitle;
   }
-  Widget dataIndexButtons(){
+
+  Widget dataIndexButtons() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          leftButton(),
-          rightButton()
-        ],
+        children: [leftButton(), rightButton()],
       ),
     );
   }
-  InkWell leftButton(){
+
+  InkWell leftButton() {
     return InkWell(
       onTap: () {
         if (startIndex - 7 >= 0) {
@@ -333,8 +289,7 @@ class _PerformRatioLineChartState extends State<PerformRatioLineChart> {
       child: Container(
         padding: EdgeInsets.all(4),
         decoration: BoxDecoration(
-            color: Color(0xFF747474),
-            borderRadius: BorderRadius.circular(8)),
+            color: Color(0xFF747474), borderRadius: BorderRadius.circular(8)),
         child: Icon(
           Icons.arrow_left_outlined,
           color: Colors.white,
@@ -342,7 +297,8 @@ class _PerformRatioLineChartState extends State<PerformRatioLineChart> {
       ),
     );
   }
-  InkWell rightButton(){
+
+  InkWell rightButton() {
     return InkWell(
       onTap: () {
         if (startIndex + 7 < dateList.length) {
@@ -356,8 +312,7 @@ class _PerformRatioLineChartState extends State<PerformRatioLineChart> {
       child: Container(
         padding: EdgeInsets.all(4),
         decoration: BoxDecoration(
-            color: Color(0xFF747474),
-            borderRadius: BorderRadius.circular(8)),
+            color: Color(0xFF747474), borderRadius: BorderRadius.circular(8)),
         child: Icon(
           Icons.arrow_right_outlined,
           color: Colors.white,
@@ -365,16 +320,68 @@ class _PerformRatioLineChartState extends State<PerformRatioLineChart> {
       ),
     );
   }
+
   addPerformRatioList() {
     performRatioList.addAll(List.generate(
         7, (index) => performRatioDataList[startIndex + index].toDouble()));
   }
+}
 
-  getAverage(List<double> list) {
-    double sum = 0;
-    for (int i = 0; i < 7; i++) {
-      sum += list[i];
-    }
-    return (sum / 7).floor();
+class PerformRatioAverage extends StatelessWidget {
+  PerformRatioAverage({super.key, this.performRatioList});
+
+  List<double>? performRatioList;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+      child: Container(
+        decoration: BoxDecoration(
+            color: Color(0xFFF9F9F9),
+            border: Border.all(
+              color: Color(0xFFDDDDDD),
+            ),
+            borderRadius: const BorderRadius.all(Radius.circular(8))),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 8,
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "평균",
+                  style: TextStyle(fontSize: 14, height: 1.5),
+                ),
+                SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  performRatioList != null ? getAverage(performRatioList!) : '',
+                  style: TextStyle(
+                      fontSize: 20, height: 1.5, fontWeight: FontWeight.bold),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 8,
+            ),
+          ],
+        ),
+      ),
+    );
   }
+}
+
+getAverage(List<double> list) {
+  double sum = 0;
+  for (int i = 0; i < 7; i++) {
+    sum += list[i];
+  }
+  return (sum / 7).floor();
 }
