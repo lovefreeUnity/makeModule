@@ -42,13 +42,15 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
     71,
     100,
   ];
+
   int startIndexForGetData = 0;
 
   int showingTooltip = -1;
 
   LineBarSpot? showLineBarSpotTooltip;
 
-  List<double> exerciseRatioList = [];
+  //태스트 용 리스트
+  List<Map<String,dynamic>> exerciseRatioList = [];
 
   @override
   void initState() {
@@ -185,7 +187,7 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
     spotList.addAll(List<FlSpot>.generate(
         7,
         (index) => FlSpot(index.toDouble(),
-            exerciseRatioList[index + startIndexForGetData])));
+            exerciseRatioList[index + startIndexForGetData]['value'])));
     return spotList;
   }
 
@@ -237,7 +239,7 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
           showTitles: true,
           reservedSize: 30,
           getTitlesWidget: (double value, TitleMeta meta) {
-            String text = dateList[value.floor() + startIndexForGetData];
+            String text = exerciseRatioList[value.floor() + startIndexForGetData]['date'];
             return SideTitleWidget(
               axisSide: meta.axisSide,
               space: 5,
@@ -307,11 +309,15 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
     );
   }
 
+  //테스트 용
   addExerciseRatioList() {
     exerciseRatioList.addAll(List.generate(
         7,
-        (index) =>
-            exerciseRatioDataList[startIndexForGetData + index].toDouble()));
+        (index) => {
+          'date' : dateList[startIndexForGetData + index],
+          'value' : exerciseRatioDataList[startIndexForGetData + index].toDouble()
+        }
+    ));
   }
 }
 
@@ -319,7 +325,7 @@ class ExerciseRatioAverage extends StatelessWidget {
   ExerciseRatioAverage(
       {super.key, required this.exerciseRatioList, required this.startIndex});
 
-  List<double> exerciseRatioList;
+  List<Map<String,dynamic>> exerciseRatioList;
   int startIndex;
 
   @override
@@ -369,10 +375,10 @@ class ExerciseRatioAverage extends StatelessWidget {
   }
 }
 
-getAverage(List<double> list, int startIndex) {
+getAverage(List<Map<String,dynamic>> list, int startIndex) {
   double sum = 0;
   for (int i = startIndex; i < startIndex + 7; i++) {
-    sum += list[i];
+    sum += list[i]['value'];
   }
   return (sum / 7).floor();
 }
