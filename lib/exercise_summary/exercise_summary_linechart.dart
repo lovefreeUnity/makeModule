@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:grapth/res/everex_theme.dart';
-import 'exercise_ratio_average.dart';
+import 'exercise_summary_average.dart';
 
 class ExerciseRatioLineChart extends StatefulWidget {
   const ExerciseRatioLineChart({Key? key}) : super(key: key);

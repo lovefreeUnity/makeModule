@@ -1,6 +1,6 @@
-import 'package:fl_chart/fl_chart.dart';
+
 import 'package:flutter/material.dart';
-import 'package:grapth/exercise_ratio/exercise_ratio_linechart.dart';
+import 'exercise_summary/exercise_summary_linechart.dart';
 
 void main() {
   runApp(const MyApp());
