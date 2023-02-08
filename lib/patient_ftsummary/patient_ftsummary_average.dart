@@ -39,7 +39,7 @@ class PatientFtAverage extends StatelessWidget {
                   width: 8,
                 ),
                 Text(
-                  "${getAverage(exerciseRatioList, startIndex)}",
+                  "${getAverage(exerciseRatioList, startIndex)}도",
                   style: moraText.fontSize20.copyWith(
                       color: Color(0xFfFDAA2E),
                       fontWeight: FontWeight.w700),

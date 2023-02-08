@@ -39,7 +39,7 @@ class ExerciseRatioAverage extends StatelessWidget {
                   width: 8,
                 ),
                 Text(
-                  "${getAverage(exerciseRatioList, startIndex)}",
+                  "${getAverage(exerciseRatioList, startIndex)}%",
                   style: moraText.fontSize20.copyWith(
                       color: MORAColor.primaryColor.shade500,
                       fontWeight: FontWeight.w700),
