@@ -176,15 +176,6 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
               ),
             ),
           ),
-          // SingleChildScrollView(
-          //   // dragStartBehavior: DragStartBehavior.start,
-          //   scrollDirection: Axis.horizontal,
-          //   child: Row(
-          //     children: [
-          //
-          //     ],
-          //   ),
-          // ),
           SizedBox(
             height: 24,
           ),
