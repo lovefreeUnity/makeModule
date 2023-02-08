@@ -124,6 +124,7 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
                   maxX: 6,
                   lineBarsData: [
                     LineChartBarData(
+                      color: MORAColor.primaryColor.shade500,
                       isCurved: false,
                       show: true,
                       spots: spotList(),
@@ -190,7 +191,6 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
     return FlDotCirclePainter(
         color: MORAColor.primaryColor.shade300,
         radius: 5,
-        strokeColor: MORAColor.primaryColor.shade500,
         strokeWidth: 2,
         circleBorderColor: MORAColor.white);
   }
