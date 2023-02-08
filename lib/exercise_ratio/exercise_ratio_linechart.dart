@@ -54,6 +54,7 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
 
   @override
   void initState() {
+    moraText.setTextStyle();
     addExerciseRatioList();
   }
 
@@ -71,7 +72,7 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
             child: Text(
               "운동 수행률",
-              style: moraText.fontSize16,
+              style: moraText.fontSize16.copyWith(fontWeight: FontWeight.w500),
             ),
           ),
           SizedBox(
@@ -231,8 +232,7 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
   }
 
   AxisTitles createBottomTitleWidget() {
-    TextStyle bottomTitleTextStyle =
-        TextStyle(color: MORAColor.gray1, fontSize: 12, height: 1.5);
+    TextStyle bottomTitleTextStyle = moraText.fontSize12.copyWith(color: MORAColor.gray1);
     AxisTitles bottomTitle = AxisTitles(
       sideTitles: SideTitles(
           interval: 1,
