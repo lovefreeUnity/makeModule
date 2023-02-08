@@ -52,6 +52,7 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
 
   @override
   void initState() {
+    moraText.setTextStyle();
     addExerciseRatioList();
   }
 
@@ -69,7 +70,7 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
             child: Text(
               "운동 수행률",
-              style: moraText.fontSize16,
+              style: moraText.setTextStyle(),
             ),
           ),
           Container(
