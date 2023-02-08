@@ -159,7 +159,6 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
               ),
             ),
           ),
-          dataIndexButtons(),
           SizedBox(
             height: 24,
           ),
@@ -253,62 +252,6 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
 
     return bottomTitle;
   }
-
-  Widget dataIndexButtons() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [leftButton(), rightButton()],
-      ),
-    );
-  }
-
-  InkWell leftButton() {
-    return InkWell(
-      onTap: () {
-        if (startIndexForGetData - 7 >= 0) {
-          startIndexForGetData -= 7;
-        }
-        setState(() {
-          showLineBarSpotTooltip = null;
-        });
-      },
-      child: Container(
-        padding: EdgeInsets.all(4),
-        decoration: BoxDecoration(
-            color: MORAColor.gray2, borderRadius: BorderRadius.circular(8)),
-        child: Icon(
-          Icons.arrow_left_outlined,
-          color: MORAColor.white,
-        ),
-      ),
-    );
-  }
-
-  InkWell rightButton() {
-    return InkWell(
-      onTap: () {
-        if (startIndexForGetData + 7 < dateList.length) {
-          startIndexForGetData += 7;
-          addExerciseRatioList();
-        }
-        setState(() {
-          showLineBarSpotTooltip = null;
-        });
-      },
-      child: Container(
-        padding: EdgeInsets.all(4),
-        decoration: BoxDecoration(
-            color: MORAColor.gray2, borderRadius: BorderRadius.circular(8)),
-        child: Icon(
-          Icons.arrow_right_outlined,
-          color: MORAColor.white,
-        ),
-      ),
-    );
-  }
-
   //테스트 용
   addExerciseRatioList() {
     exerciseRatioList.addAll(List.generate(
