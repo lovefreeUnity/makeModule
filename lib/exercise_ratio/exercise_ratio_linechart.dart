@@ -208,12 +208,11 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
   }
 
   List<FlSpot> spotList() {
-    List<FlSpot> spotList = [];
-    spotList.addAll(List<FlSpot>.generate(
+    List<FlSpot> spotList = List<FlSpot>.generate(
         exerciseRatioList.length,
-        (index) =>
-            FlSpot(index.toDouble(), exerciseRatioList[index]['value'])));
-    return spotList;
+            (index) =>
+            FlSpot(index.toDouble(), exerciseRatioList[index]['value']));
+    return spotList.sublist(startIndexForGetData,startIndexForGetData+7);
   }
 
   List<LineTooltipItem> lineTooltipItems(List<LineBarSpot> lineBarSpotList) {
