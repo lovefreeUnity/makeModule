@@ -43,9 +43,9 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
     100,
   ];
 
-  int showingTooltip = -1;
-
   LineBarSpot? showLineBarSpotTooltip;
+
+  int startIndexForGetData = 0;
 
   //태스트 용 리스트
   List<Map<String, dynamic>> exerciseRatioList = [];
@@ -72,103 +72,125 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
               style: moraText.fontSize16,
             ),
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                Container(
-                  height: 201,
-                  width: 40 + (MediaQuery.of(context).size.width / 10) *
-                          exerciseRatioList.length.toDouble(),
-                  padding: EdgeInsets.fromLTRB(16, 24, 32, 0),
-                  child: LineChart(
-                    LineChartData(
-                      gridData: FlGridData(
-                        horizontalInterval: 20,
-                        verticalInterval: 1,
-                        drawHorizontalLine: true,
-                        getDrawingHorizontalLine: (double) {
-                          return FlLine(
-                            color: MORAColor.gray5,
-                            strokeWidth: 1,
-                          );
-                        },
-                        drawVerticalLine: false,
-                      ),
-                      borderData: FlBorderData(
-                        show: true,
-                        border: Border(
-                            top: BorderSide(
-                              color: MORAColor.gray5,
-                            ),
-                            bottom: BorderSide(
-                              color: MORAColor.gray4,
-                            )),
-                      ),
-                      minY: 0,
-                      maxY: 100,
-                      minX: 0,
-                      maxX: exerciseRatioList.length - 1,
-                      lineBarsData: [
-                        LineChartBarData(
-                          isCurved: false,
-                          show: true,
-                          spots: spotList(),
-                          dotData: FlDotData(
-                            show: true,
-                            getDotPainter: dotPainter,
-                          ),
-                        ),
-                      ],
-                      showingTooltipIndicators: showLineBarSpotTooltip != null
-                          ? [
-                              ShowingTooltipIndicators(
-                                  [showLineBarSpotTooltip!])
-                            ]
-                          : [],
-                      lineTouchData: LineTouchData(
-                          touchSpotThreshold: 20,
-                          handleBuiltInTouches: false,
-                          touchTooltipData: LineTouchTooltipData(
-                            fitInsideHorizontally: true,
-                            fitInsideVertically: true,
-                            tooltipMargin: 5,
-                            tooltipPadding: EdgeInsets.fromLTRB(8, 4, 8, 4),
-                            maxContentWidth: double.infinity,
-                            tooltipRoundedRadius: 4,
-                            tooltipBgColor: MORAColor.primaryColor.shade100,
-                            tooltipBorder:
-                                const BorderSide(color: MORAColor.gray5),
-                            getTooltipItems: lineTooltipItems,
-                          ),
-                          touchCallback: (event, response) async {
-                            if (response != null &&
-                                response.lineBarSpots?[0].spotIndex != null &&
-                                event is FlTapUpEvent) {
-                              setState(() {
-                                showLineBarSpotTooltip =
-                                    response.lineBarSpots![0];
-                              });
-                            }
-                          }),
-                      titlesData: FlTitlesData(
-                          topTitles: AxisTitles(
-                              sideTitles: SideTitles(showTitles: false)),
-                          rightTitles: AxisTitles(
-                              sideTitles: SideTitles(showTitles: false)),
-                          leftTitles: createLeftTitleWidget(),
-                          bottomTitles: createBottomTitleWidget()),
-                    ),
+          Container(
+            height: 201,
+            width: 40 +
+                (MediaQuery.of(context).size.width / 7) *
+                    exerciseRatioList.length.toDouble(),
+            padding: EdgeInsets.fromLTRB(16, 24, 32, 0),
+            child: GestureDetector(
+              onHorizontalDragEnd: (dragEnd) {
+                double dragVelocity = dragEnd.primaryVelocity ?? 0;
+                setState(() {
+                  showLineBarSpotTooltip = null;
+                  if (dragVelocity > 0) {//left
+                    if (startIndexForGetData - 7 > -1) {
+                      startIndexForGetData -= 7;
+                    }
+                  }else if (dragVelocity < 0){//right
+                    if (startIndexForGetData + 7 < exerciseRatioList.length) {
+                      startIndexForGetData += 7;
+                    }
+                  }
+                });
+              },
+              child: LineChart(
+                LineChartData(
+                  gridData: FlGridData(
+                    horizontalInterval: 20,
+                    verticalInterval: 1,
+                    drawHorizontalLine: true,
+                    getDrawingHorizontalLine: (double) {
+                      return FlLine(
+                        color: MORAColor.gray5,
+                        strokeWidth: 1,
+                      );
+                    },
+                    drawVerticalLine: false,
                   ),
+                  borderData: FlBorderData(
+                    show: true,
+                    border: Border(
+                        top: BorderSide(
+                          color: MORAColor.gray5,
+                        ),
+                        bottom: BorderSide(
+                          color: MORAColor.gray4,
+                        )),
+                  ),
+                  minY: 0,
+                  maxY: 100,
+                  minX: startIndexForGetData.toDouble(),
+                  maxX: startIndexForGetData + 6,
+                  lineBarsData: [
+                    LineChartBarData(
+                      isCurved: false,
+                      show: true,
+                      spots: spotList(),
+                      dotData: FlDotData(
+                        show: true,
+                        getDotPainter: dotPainter,
+                      ),
+                    ),
+                  ],
+                  showingTooltipIndicators: showLineBarSpotTooltip != null
+                      ? [
+                    ShowingTooltipIndicators(
+                        [showLineBarSpotTooltip!])
+                  ]
+                      : [],
+                  lineTouchData: LineTouchData(
+                      touchSpotThreshold: 20,
+                      enabled: false,
+                      handleBuiltInTouches: false,
+                      touchTooltipData: LineTouchTooltipData(
+                        fitInsideHorizontally: true,
+                        fitInsideVertically: true,
+                        tooltipMargin: 5,
+                        tooltipPadding: EdgeInsets.fromLTRB(8, 4, 8, 4),
+                        maxContentWidth: double.infinity,
+                        tooltipRoundedRadius: 4,
+                        tooltipBgColor: MORAColor.primaryColor.shade100,
+                        tooltipBorder:
+                        const BorderSide(color: MORAColor.gray5),
+                        getTooltipItems: lineTooltipItems,
+                      ),
+                      touchCallback: (event, response) async {
+                        if (response != null &&
+                            response.lineBarSpots?[0].spotIndex != null &&
+                            event is FlTapUpEvent) {
+                          setState(() {
+                            showLineBarSpotTooltip =
+                            response.lineBarSpots![0];
+                          });
+                        }
+                      }),
+                  titlesData: FlTitlesData(
+                      topTitles: AxisTitles(
+                          sideTitles: SideTitles(showTitles: false)),
+                      rightTitles: AxisTitles(
+                          sideTitles: SideTitles(showTitles: false)),
+                      leftTitles: createLeftTitleWidget(),
+                      bottomTitles: createBottomTitleWidget()),
                 ),
-              ],
+              ),
             ),
           ),
+          // SingleChildScrollView(
+          //   // dragStartBehavior: DragStartBehavior.start,
+          //   scrollDirection: Axis.horizontal,
+          //   child: Row(
+          //     children: [
+          //
+          //     ],
+          //   ),
+          // ),
           SizedBox(
             height: 24,
           ),
           ExerciseRatioAverage(
             exerciseRatioList: exerciseRatioList,
+            startIndexForGetData: startIndexForGetData,
           )
         ],
       ),
@@ -195,9 +217,8 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
   }
 
   List<LineTooltipItem> lineTooltipItems(List<LineBarSpot> lineBarSpotList) {
-    return List<LineTooltipItem>.generate(
-      lineBarSpotList.length,
-      (index) => LineTooltipItem(
+    return List<LineTooltipItem>.generate(lineBarSpotList.length, (index) {
+      return LineTooltipItem(
           "${lineBarSpotList[index].y.floor()}",
           moraText.fontSize16.copyWith(
               color: MORAColor.mintColorSub, fontWeight: FontWeight.w700),
@@ -209,8 +230,8 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
           showTooltipMode:
               lineBarSpotList[index].y > 30 && lineBarSpotList[index].y < 71
                   ? TooltipMode.top
-                  : TooltipMode.bottom),
-    );
+                  : TooltipMode.bottom);
+    });
   }
 
   AxisTitles createLeftTitleWidget() {
@@ -234,15 +255,15 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
   }
 
   AxisTitles createBottomTitleWidget() {
-    TextStyle bottomTitleTextStyle =
-        TextStyle(color: MORAColor.gray1, fontSize: 12, height: 1.5);
+    TextStyle bottomTitleTextStyle = moraText.fontSize12.copyWith(color: MORAColor.gray1);
     AxisTitles bottomTitle = AxisTitles(
       sideTitles: SideTitles(
           interval: 1,
           showTitles: true,
           reservedSize: 30,
           getTitlesWidget: (double value, TitleMeta meta) {
-            String text = exerciseRatioList[value.toInt()]['date'];
+            String text =
+                exerciseRatioList[value.floor()]['date'];
             return SideTitleWidget(
               axisSide: meta.axisSide,
               space: 5,
@@ -269,9 +290,13 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
 }
 
 class ExerciseRatioAverage extends StatelessWidget {
-  ExerciseRatioAverage({super.key, required this.exerciseRatioList});
+  ExerciseRatioAverage(
+      {super.key,
+      required this.exerciseRatioList,
+      required this.startIndexForGetData});
 
   List<Map<String, dynamic>> exerciseRatioList;
+  int startIndexForGetData;
 
   @override
   Widget build(BuildContext context) {
@@ -303,7 +328,7 @@ class ExerciseRatioAverage extends StatelessWidget {
                   width: 8,
                 ),
                 Text(
-                  "${getAverage(exerciseRatioList)}",
+                  "${getAverage(exerciseRatioList, startIndexForGetData)}",
                   style: moraText.fontSize20.copyWith(
                       color: MORAColor.primaryColor.shade500,
                       fontWeight: FontWeight.w700),
@@ -320,10 +345,10 @@ class ExerciseRatioAverage extends StatelessWidget {
   }
 }
 
-getAverage(List<Map<String, dynamic>> list) {
+getAverage(List<Map<String, dynamic>> list, int startIndex) {
   double sum = 0;
-  for (int i = 0; i < list.length; i++) {
+  for (int i = startIndex; i < startIndex + 7; i++) {
     sum += list[i]['value'];
   }
-  return (sum / list.length).floor();
+  return (sum / 7).floor();
 }
