@@ -53,6 +53,17 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
   //태스트 용 리스트
   List<Map<String,dynamic>> exerciseRatioList = [];
 
+  //테스트 용
+  addExerciseRatioList() {
+    exerciseRatioList.addAll(List.generate(
+        7,
+            (index) => {
+          'date' : dateList[startIndexForGetData + index],
+          'value' : exerciseRatioDataList[startIndexForGetData + index].toDouble()
+        }
+    ));
+  }
+
   @override
   void initState() {
     moraText.setTextStyle();
@@ -308,16 +319,5 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
         ),
       ),
     );
-  }
-
-  //테스트 용
-  addExerciseRatioList() {
-    exerciseRatioList.addAll(List.generate(
-        7,
-        (index) => {
-          'date' : dateList[startIndexForGetData + index],
-          'value' : exerciseRatioDataList[startIndexForGetData + index].toDouble()
-        }
-    ));
   }
 }
