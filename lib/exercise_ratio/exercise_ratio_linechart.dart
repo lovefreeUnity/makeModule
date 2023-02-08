@@ -50,13 +50,6 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
 
   List<double> exerciseRatioList = [];
 
-  Map<String, double> values = {
-    'minY': 0,
-    'maxY': 100,
-    'minX': 0,
-    'maxX': 6,
-  };
-
   @override
   void initState() {
     addExerciseRatioList();
@@ -110,10 +103,10 @@ class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
                           color: MORAColor.gray4,
                         )),
                   ),
-                  minY: values['minY'],
-                  maxY: values['maxY'],
-                  minX: values['minX'],
-                  maxX: values['maxX'],
+                  minY: 0,
+                  maxY: 100,
+                  minX: 0,
+                  maxX: 6,
                   lineBarsData: [
                     LineChartBarData(
                       isCurved: false,
