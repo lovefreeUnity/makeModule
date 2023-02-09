@@ -41,7 +41,7 @@ class _PatientFtHeaderState extends State<PatientFtHeader> {
           child: SizedBox(
             width: 20,
             height: 20,
-            child: widget.showLeftButton ? Icon(Icons.arrow_right) : SizedBox(),
+            child: widget.showRightButton ? Icon(Icons.arrow_right) : SizedBox(),
           ),
         ),
       ],
