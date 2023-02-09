@@ -1,16 +1,17 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:grapth/res/everex_theme.dart';
-import 'exercise_summary_average.dart';
 
-class ExerciseRatioLineChart extends StatefulWidget {
-  const ExerciseRatioLineChart({Key? key}) : super(key: key);
+import 'exercise_ratio_average.dart';
+
+class LineExerciseRatio extends StatefulWidget {
+  const LineExerciseRatio({Key? key}) : super(key: key);
 
   @override
-  State<ExerciseRatioLineChart> createState() => _ExerciseRatioLineChartState();
+  State<LineExerciseRatio> createState() => _LineExerciseRatioState();
 }
 
-class _ExerciseRatioLineChartState extends State<ExerciseRatioLineChart> {
+class _LineExerciseRatioState extends State<LineExerciseRatio> {
   List<String> dateList = [
     '07.01',
     '07.02',
