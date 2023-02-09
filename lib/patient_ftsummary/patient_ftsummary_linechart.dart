@@ -83,7 +83,7 @@ class _PatientFtLineChartState extends State<PatientFtLineChart> {
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
             child: Text(
-              "운동 수행률",
+              "AI 기능평가",
               style: moraText.fontSize16.copyWith(fontWeight: FontWeight.w500),
             ),
           ),
