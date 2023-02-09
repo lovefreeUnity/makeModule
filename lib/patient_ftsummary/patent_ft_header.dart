@@ -30,9 +30,12 @@ class _PatientFtHeaderState extends State<PatientFtHeader> {
             child: widget.showLeftButton ? Icon(Icons.arrow_left) : SizedBox(),
           ),
         ),
-        Text(
-          widget.text,
-          style: widget.textStyle,
+        Padding(
+          padding: const EdgeInsets.fromLTRB(0,8,0,8),
+          child: Text(
+            widget.text,
+            style: widget.textStyle,
+          ),
         ),
         InkWell(
           child: SizedBox(
