@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:grapth/patient_ftsummary_items/patient_ftsummary_average.dart';
-import 'package:grapth/patient_ftsummary_items/patient_ftsummary_linechart.dart';
 import '../res/everex_theme.dart';
-import 'patient_ftsummary_items/patent_ft_header.dart';
+import 'patient_ft_summary_items/patent_ft_header.dart';
+import 'patient_ft_summary_items/patient_ftsummary_average.dart';
+import 'patient_ft_summary_items/patient_ftsummary_linechart.dart';
 
 class PatientFtSummaryPage extends StatefulWidget {
   PatientFtSummaryPage({
