@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:grapth/patient_ftsummary_items/patient_ftsummary_average.dart';
-import 'package:grapth/patient_ftsummary_items/patient_ftsummary_linechart.dart';
 import '../res/everex_theme.dart';
-import 'patient_ftsummary_items/patent_ft_header.dart';
+import 'exercise_ratio_items/exercise_ratio_average.dart';
+import 'exercise_ratio_items/line_exercise_ratio.dart';
 
-class PatientFtSummaryPage extends StatefulWidget {
-  PatientFtSummaryPage({
+class ExerciseRatio extends StatefulWidget {
+   ExerciseRatio({
     super.key,
     required this.dataList
   });
-  List<Map<String,dynamic>> dataList;
+
   @override
-  State<PatientFtSummaryPage> createState() => _PatientFtSummaryPageState();
+  State<ExerciseRatio> createState() => _ExerciseRatioState();
+
+  List<Map<String, dynamic>> dataList;
 }
 
-class _PatientFtSummaryPageState extends State<PatientFtSummaryPage> {
+class _ExerciseRatioState extends State<ExerciseRatio> {
 
   int startIndex = 0;
   List<Map<String, dynamic>> exerciseRatioList = [];
+
   @override
   void initState() {
     exerciseRatioList = widget.dataList;
-    super.initState();
   }
 
   @override
@@ -37,18 +38,9 @@ class _PatientFtSummaryPageState extends State<PatientFtSummaryPage> {
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
             child: Text(
-              "AI 기능평가",
+              "운동 수행률",
               style: moraText.fontSize16.copyWith(fontWeight: FontWeight.w500),
             ),
-          ),
-          SizedBox(
-            height: 16,
-          ),
-          PatientFtHeader(
-            text: "앞으로 팔 벌리기",
-            textStyle: moraText.fontSize18
-                .copyWith(color: MORAColor.gray1, fontWeight: FontWeight.w700),
-            showLeftButton: false,
           ),
           SizedBox(
             height: 24,
@@ -57,7 +49,7 @@ class _PatientFtSummaryPageState extends State<PatientFtSummaryPage> {
             child: Container(
                 height: 201,
                 padding: EdgeInsets.fromLTRB(16, 0, 32, 0),
-                child: PatientFtLineChart(
+                child: LineExerciseRatio(
                   exerciseRatioDataList: exerciseRatioList,
                   startIndex: startIndex,
                 )),
@@ -66,8 +58,10 @@ class _PatientFtSummaryPageState extends State<PatientFtSummaryPage> {
           SizedBox(
             height: 24,
           ),
-          PatientFtAverage(
-              exerciseRatioList: exerciseRatioList, startIndex: startIndex)
+          ExerciseRatioAverage(
+            exerciseRatioList: exerciseRatioList,
+            startIndex: startIndex,
+          )
         ],
       ),
     );
