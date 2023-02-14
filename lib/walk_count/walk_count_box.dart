@@ -4,9 +4,9 @@ import 'package:grapth/walk_count/underline.dart';
 import 'package:grapth/walk_count/walk_count_box_item.dart';
 
 class WalkCountBox extends StatefulWidget {
-  WalkCountBox({super.key, required this.boxDataList});
+  WalkCountBox({super.key, required this.walkCountList});
 
-  List<WalkCountBoxItem> boxDataList;
+  List<WalkCountItem> walkCountList;
 
   @override
   State<WalkCountBox> createState() => _WalkCountBoxState();
@@ -17,7 +17,7 @@ class _WalkCountBoxState extends State<WalkCountBox> {
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
-        padding: EdgeInsets.fromLTRB(16, 16, 16, 16),
+        padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
         decoration: BoxDecoration(
             color: MORAColor.gray6,
             borderRadius: BorderRadius.circular(8),
@@ -26,16 +26,15 @@ class _WalkCountBoxState extends State<WalkCountBox> {
   }
 
   Widget walkCountBoxWidget() {
-    int sevenDaysAgo = widget.boxDataList.length > 7 ?widget.boxDataList.length-7: 0;
+    int sevenDaysAgo = widget.walkCountList.length > 7 ?widget.walkCountList.length-7: 0;
 
-    double averageThisWeek =
-        getAverage(widget.boxDataList.sublist(sevenDaysAgo));
+    double averageThisWeek = getAverage(widget.walkCountList.sublist(sevenDaysAgo));
 
-    double? difference;
     double? averageLastWeek;
+    double? difference;
 
-    if (widget.boxDataList.length >= 14) {
-      averageLastWeek = getAverage(widget.boxDataList.sublist(sevenDaysAgo-7, sevenDaysAgo));
+    if (widget.walkCountList.length >= 14) {
+      averageLastWeek = getAverage(widget.walkCountList.sublist(sevenDaysAgo-7, sevenDaysAgo));
       difference = averageThisWeek - averageLastWeek;
     }
 
@@ -128,7 +127,7 @@ class _WalkCountBoxState extends State<WalkCountBox> {
     }
   }
 
-  double getAverage(List<WalkCountBoxItem> boxItemList) {
+  double getAverage(List<WalkCountItem> boxItemList) {
     int sumBoxItem = 0;
     for (int i = 0; boxItemList.length > i; i++) {
       sumBoxItem += boxItemList[i].value;
