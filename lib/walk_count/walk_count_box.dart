@@ -6,7 +6,7 @@ import 'package:grapth/walk_count/walk_count_box_item.dart';
 class WalkCountBox extends StatefulWidget {
   WalkCountBox({super.key, required this.walkCountList});
 
-  List<WalkCountItem> walkCountList;
+  List<WalkCountBoxItem> walkCountList;
 
   @override
   State<WalkCountBox> createState() => _WalkCountBoxState();
@@ -127,7 +127,7 @@ class _WalkCountBoxState extends State<WalkCountBox> {
     }
   }
 
-  double getAverage(List<WalkCountItem> boxItemList) {
+  double getAverage(List<WalkCountBoxItem> boxItemList) {
     int sumBoxItem = 0;
     for (int i = 0; boxItemList.length > i; i++) {
       sumBoxItem += boxItemList[i].value;
