@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:grapth/res/everex_theme.dart';
 
 class InformationProvisionTitle extends StatelessWidget {
-  InformationProvisionTitle({super.key,required this.hospitalName,required this.assignmentDate,required this.doctorName,required this.therapistName});
+  InformationProvisionTitle({super.key,required this.userName,required this.hospitalName,required this.assignmentDate,required this.doctorName,required this.therapistName});
 
   TextStyle titleTextStyle = moraText.fontSize24.copyWith(fontWeight: FontWeight.w700);
   TextStyle gray1 = moraText.fontSize14.copyWith(color: MORAColor.gray1);
   TextStyle gray3 = moraText.fontSize14.copyWith(color: MORAColor.gray3);
 
+  String userName;
   String hospitalName;
   String doctorName;
   String therapistName;
@@ -19,7 +20,7 @@ class InformationProvisionTitle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '홍길동 님의 고관절운동 플랜',
+          '$userName 님의 고관절운동 플랜',
           style: titleTextStyle,
         ),
         Text.rich(
