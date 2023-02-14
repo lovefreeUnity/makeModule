@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grapth/information_provision/information_provision_body.dart';
 import 'package:grapth/information_provision/information_title.dart';
+import 'package:grapth/information_provision/round_button.dart';
 import 'package:grapth/res/everex_theme.dart';
 
 class ConsentToProvisionInformationPage extends StatefulWidget {
@@ -13,7 +14,7 @@ class ConsentToProvisionInformationPage extends StatefulWidget {
 
 class _ConsentToProvisionInformationPageState
     extends State<ConsentToProvisionInformationPage> {
-  bool isChecked = false;
+  bool isDisabled = true;
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +47,10 @@ class _ConsentToProvisionInformationPageState
             padding: EdgeInsets.fromLTRB(0, 40, 0, 40),
             child: RoundButton(
                 text: '플랜 시작하기',
+                disabled: isDisabled,
                 borderRadius: 14,
-                onClick: () {},
-                isEnable: isChecked),
+                onClick: () {}, disabledClick: () {},
+            ),
           ),
         ],
       ),
@@ -59,7 +61,7 @@ class _ConsentToProvisionInformationPageState
     return GestureDetector(
       onTap: () {
         setState(() {
-          isChecked = isChecked ? false : true;
+          isDisabled = isDisabled ? false : true;
         });
       },
       child: AnimatedContainer(
@@ -71,10 +73,10 @@ class _ConsentToProvisionInformationPageState
                 padding: const EdgeInsets.all(3.5),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: isChecked
+                    color: isDisabled == false
                         ? MORAColor.primaryColor.shade500
                         : MORAColor.white,
-                    border: isChecked
+                    border: isDisabled == false
                         ? Border.all(
                             color: MORAColor.primaryColor.shade500,
                           )
@@ -84,7 +86,7 @@ class _ConsentToProvisionInformationPageState
                   ),
                   child: Icon(
                     Icons.check,
-                    color: isChecked
+                    color: isDisabled ==false
                         ? MORAColor.white
                         : MORAColor.gray4,
                     size: 17,
@@ -105,42 +107,4 @@ class _ConsentToProvisionInformationPageState
           )),
     );
   }
-}
-
-Widget RoundButton({
-  required String text,
-  required GestureTapCallback onClick,
-  double? borderRadius,
-  Color? color,
-  bool isEnable = true,
-}) {
-  return InkWell(
-    onTap: () {
-      if (isEnable) {
-        onClick();
-      } else {
-      }
-    },
-    child: Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-          color: isEnable
-              ? color ?? MORAColor.primaryColor.shade500
-              : MORAColor.gray4,
-          borderRadius: BorderRadius.circular(borderRadius ?? 16)),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
-        child: Center(
-            child:Text(
-              text,
-              style:moraText.fontSize18.copyWith(color: MORAColor.white, fontWeight: FontWeight.w700,),
-              textAlign: TextAlign.start,
-              textHeightBehavior: const TextHeightBehavior(
-                leadingDistribution: TextLeadingDistribution.even
-              ),
-            ),
-        ),
-      ),
-    ),
-  );
 }
