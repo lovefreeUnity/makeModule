@@ -29,33 +29,27 @@ class _ConsentToProvisionInformationPageState
             doctorName: '이현수',
             therapistName: '김민지',
           ),
-          const SizedBox(
-            height: 32,
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 32, 0, 32),
+            child: Container(
+              color: MORAColor.gray4,
+              height: 1,
+              width: double.infinity,
+            ),
           ),
-          Container(
-            color: MORAColor.gray4,
-            height: 1,
-            width: double.infinity,
-          ),
-          SizedBox(
-            height: 32,
-          ),
-          InformationProvisionBody(),
-          SizedBox(
-            height: 65,
+          Padding(
+            padding: EdgeInsets.only(bottom: 32),
+            child: InformationProvisionBody(),
           ),
           checkBoxText(),
-          SizedBox(
-            height: 40,
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 40, 0, 40),
+            child: RoundButton(
+                text: '플랜 시작하기',
+                borderRadius: 14,
+                onClick: () {},
+                isEnable: isChecked),
           ),
-          RoundButton(
-              text: '확인했어요!',
-              borderRadius: 14,
-              onClick: () {},
-              isEnable: isChecked),
-          SizedBox(
-            height: 40,
-          )
         ],
       ),
     );
@@ -147,8 +141,8 @@ Widget RoundButton({
       child: Center(
         child: Text(
           text,
-          style: moraText.fontSize18
-              .copyWith(color: MORAColor.white, fontWeight: FontWeight.w700),
+          style: moraText.fontSize18.copyWith(
+              color: MORAColor.white, fontWeight: FontWeight.w700, height: 1.0),
         ),
       ),
     ),
