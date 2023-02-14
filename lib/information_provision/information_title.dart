@@ -30,7 +30,7 @@ class InformationProvisionTitle extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '$userName 님의 고관절운동 플랜',
+            '$userName 님의 고관절 운동 플랜',
             style: titleTextStyle,
           ),
           Text.rich(
