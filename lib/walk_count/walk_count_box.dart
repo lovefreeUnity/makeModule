@@ -31,11 +31,11 @@ class _WalkCountBoxState extends State<WalkCountBox> {
     double averageThisWeek = getAverage(widget.walkCountList.sublist(sevenDaysAgo));
 
     double? averageLastWeek;
-    double? difference;
+    int? difference;
 
     if (widget.walkCountList.length >= 14) {
       averageLastWeek = getAverage(widget.walkCountList.sublist(sevenDaysAgo-7, sevenDaysAgo));
-      difference = averageThisWeek - averageLastWeek;
+      difference = averageThisWeek.floor() - averageLastWeek.floor();
     }
 
     TextStyle titleStyle = moraText.fontSize18
@@ -101,7 +101,7 @@ class _WalkCountBoxState extends State<WalkCountBox> {
             )),
             difference == 0
                 ? const TextSpan(text: '-')
-                : TextSpan(text: "${difference.floor().abs()}", children: [
+                : TextSpan(text: "${difference.abs()}", children: [
                     difference > 0
                         ? const WidgetSpan(
                             child: Padding(
