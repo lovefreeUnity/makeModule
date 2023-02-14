@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:grapth/res/everex_theme.dart';
 
 class InformationProvisionTitle extends StatelessWidget {
-  InformationProvisionTitle({super.key});
+  InformationProvisionTitle({super.key,required this.hospitalName,required this.assignmentDate,required this.doctorName,required this.therapistName});
 
-  TextStyle titleTextStyle =
-  moraText.fontSize24.copyWith(fontWeight: FontWeight.w700);
+  TextStyle titleTextStyle = moraText.fontSize24.copyWith(fontWeight: FontWeight.w700);
   TextStyle gray1 = moraText.fontSize14.copyWith(color: MORAColor.gray1);
   TextStyle gray3 = moraText.fontSize14.copyWith(color: MORAColor.gray3);
 
-  String hospitalName = '연세바른정형외과';
-  String doctorName = '이현수';
-  String therapistName = '김민지';
-  String assignmentDate ='22.10.27 (28일)';
+  String hospitalName;
+  String doctorName;
+  String therapistName;
+  String assignmentDate;
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -22,7 +22,12 @@ class _ConsentToProvisionInformationPageState
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          InformationProvisionTitle(),
+          InformationProvisionTitle(
+            hospitalName: '연세바른정형외과',
+            assignmentDate: '22.10.27 (28일)',
+            doctorName: '이현수',
+            therapistName: '김민지',
+          ),
           const SizedBox(
             height: 32,
           ),
@@ -45,8 +50,7 @@ class _ConsentToProvisionInformationPageState
           RoundButton(
               text: '확인했어요!',
               borderRadius: 14,
-              onClick: () {
-              },
+              onClick: () {},
               isEnable: isChecked),
           SizedBox(
             height: 40,
@@ -77,18 +81,26 @@ class _ConsentToProvisionInformationPageState
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: isChecked ? checkColor??checkColor?? MORAColor.primaryColor.shade500 : MORAColor.white,
+                    color: isChecked
+                        ? checkColor ??
+                            checkColor ??
+                            MORAColor.primaryColor.shade500
+                        : MORAColor.white,
                     border: isChecked
                         ? Border.all(
-                            color: checkColor??checkColor?? MORAColor.primaryColor.shade500,
+                            color: checkColor ??
+                                checkColor ??
+                                MORAColor.primaryColor.shade500,
                           )
                         : Border.all(
-                            color: defaultColor??MORAColor.gray4,
+                            color: defaultColor ?? MORAColor.gray4,
                           ),
                   ),
                   child: Icon(
                     Icons.check,
-                    color: isChecked ? MORAColor.white : defaultColor??MORAColor.gray4,
+                    color: isChecked
+                        ? MORAColor.white
+                        : defaultColor ?? MORAColor.gray4,
                     size: 17,
                   ),
                 ),
@@ -99,9 +111,9 @@ class _ConsentToProvisionInformationPageState
                   text ?? '위 내용에 동의합니다.',
                   style: textStyle ??
                       moraText.fontSize16.copyWith(
-                          color: MORAColor.gray1, fontWeight: FontWeight.w700,
-                          height: 1.0
-                      ),
+                          color: MORAColor.gray1,
+                          fontWeight: FontWeight.w700,
+                          height: 1.0),
                 ),
               ],
             )),
@@ -121,8 +133,7 @@ Widget RoundButton({
     onTap: () {
       if (isEnable) {
         onClick();
-      } else {
-      }
+      } else {}
     },
     child: Container(
       width: double.infinity,
