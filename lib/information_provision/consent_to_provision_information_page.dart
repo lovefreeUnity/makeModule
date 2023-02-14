@@ -3,8 +3,17 @@ import 'package:grapth/information_provision/information_provision_body.dart';
 import 'package:grapth/information_provision/information_title.dart';
 import 'package:grapth/res/everex_theme.dart';
 
-class ConsentToProvisionInformationPage extends StatelessWidget {
+class ConsentToProvisionInformationPage extends StatefulWidget {
   const ConsentToProvisionInformationPage({Key? key}) : super(key: key);
+
+  @override
+  State<ConsentToProvisionInformationPage> createState() =>
+      _ConsentToProvisionInformationPageState();
+}
+
+class _ConsentToProvisionInformationPageState
+    extends State<ConsentToProvisionInformationPage> {
+  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -14,29 +23,122 @@ class ConsentToProvisionInformationPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InformationProvisionTitle(),
-          const SizedBox(height: 32,),
-          Container(color: MORAColor.gray4,height: 1,width: double.infinity,),
-          SizedBox(height: 32,),
+          const SizedBox(
+            height: 32,
+          ),
+          Container(
+            color: MORAColor.gray4,
+            height: 1,
+            width: double.infinity,
+          ),
+          SizedBox(
+            height: 32,
+          ),
           InformationProvisionBody(),
-          SizedBox(height: 65,),
-          RoundButton(text: '확인했어요!',
+          SizedBox(
+            height: 65,
+          ),
+          checkBoxText(),
+          SizedBox(
+            height: 40,
+          ),
+          RoundButton(
+              text: '확인했어요!',
               borderRadius: 14,
-              onClick: (){}),
-          SizedBox(height: 40,)
+              onClick: () {
+              },
+              isEnable: isChecked),
+          SizedBox(
+            height: 40,
+          )
         ],
+      ),
+    );
+  }
+
+  Widget checkBoxText({
+    String? text,
+    TextStyle? textStyle,
+    Color? defaultColor,
+    Color? checkColor,
+  }) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          isChecked = isChecked ? false : true;
+        });
+      },
+      child: Container(
+        padding: EdgeInsets.all(3.5),
+        child: AnimatedContainer(
+            duration: Duration(milliseconds: 0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: isChecked ? checkColor??checkColor?? MORAColor.primaryColor.shade500 : MORAColor.white,
+                    border: isChecked
+                        ? Border.all(
+                            color: checkColor??checkColor?? MORAColor.primaryColor.shade500,
+                          )
+                        : Border.all(
+                            color: defaultColor??MORAColor.gray4,
+                          ),
+                  ),
+                  child: Icon(
+                    Icons.check,
+                    color: isChecked ? MORAColor.white : defaultColor??MORAColor.gray4,
+                    size: 17,
+                  ),
+                ),
+                SizedBox(
+                  width: 4,
+                ),
+                Text(
+                  text ?? '위 내용에 동의합니다.',
+                  style: textStyle ??
+                      moraText.fontSize16.copyWith(
+                          color: MORAColor.gray1, fontWeight: FontWeight.w700,
+                          height: 1.0
+                      ),
+                ),
+              ],
+            )),
       ),
     );
   }
 }
 
-Widget RoundButton({required String text, required GestureTapCallback onClick,double? borderRadius,Color? color}){
+Widget RoundButton({
+  required String text,
+  required GestureTapCallback onClick,
+  double? borderRadius,
+  Color? color,
+  bool isEnable = true,
+}) {
   return InkWell(
-    onTap: onClick,
+    onTap: () {
+      if (isEnable) {
+        onClick();
+      } else {
+      }
+    },
     child: Container(
       width: double.infinity,
       padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
-      decoration: BoxDecoration(color: color??MORAColor.primaryColor.shade500,borderRadius:BorderRadius.circular(borderRadius??16)),
-      child: Center(child: Text(text,style: moraText.fontSize18.copyWith(color: MORAColor.white,fontWeight: FontWeight.w700),),),
+      decoration: BoxDecoration(
+          color: isEnable
+              ? color ?? MORAColor.primaryColor.shade500
+              : MORAColor.gray4,
+          borderRadius: BorderRadius.circular(borderRadius ?? 16)),
+      child: Center(
+        child: Text(
+          text,
+          style: moraText.fontSize18
+              .copyWith(color: MORAColor.white, fontWeight: FontWeight.w700),
+        ),
+      ),
     ),
   );
 }

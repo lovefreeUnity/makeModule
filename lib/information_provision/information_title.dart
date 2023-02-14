@@ -12,6 +12,7 @@ class InformationProvisionTitle extends StatelessWidget {
   String hospitalName = '연세바른정형외과';
   String doctorName = '이현수';
   String therapistName = '김민지';
+  String startDate ='22.10.27 (28일)';
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -30,7 +31,7 @@ class InformationProvisionTitle extends StatelessWidget {
               style: gray3,
             ),
             WidgetSpan(child: SizedBox(width: 8,)),
-            TextSpan(text: '22.10.27 (28일)', style: gray1)
+            TextSpan(text: startDate, style: gray1)
           ]),
         ),
         SizedBox(
