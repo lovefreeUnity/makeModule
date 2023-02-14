@@ -55,64 +55,54 @@ class _ConsentToProvisionInformationPageState
     );
   }
 
-  Widget checkBoxText({
-    String? text,
-    TextStyle? textStyle,
-    Color? defaultColor,
-    Color? checkColor,
-  }) {
+  Widget checkBoxText() {
     return GestureDetector(
       onTap: () {
         setState(() {
           isChecked = isChecked ? false : true;
         });
       },
-      child: Container(
-        padding: EdgeInsets.all(3.5),
-        child: AnimatedContainer(
-            duration: Duration(milliseconds: 0),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
+      child: AnimatedContainer(
+          duration: Duration(milliseconds: 0),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(3.5),
+                child: Container(
                   decoration: BoxDecoration(
                     color: isChecked
-                        ? checkColor ??
-                            checkColor ??
-                            MORAColor.primaryColor.shade500
+                        ? MORAColor.primaryColor.shade500
                         : MORAColor.white,
                     border: isChecked
                         ? Border.all(
-                            color: checkColor ??
-                                checkColor ??
-                                MORAColor.primaryColor.shade500,
+                            color: MORAColor.primaryColor.shade500,
                           )
                         : Border.all(
-                            color: defaultColor ?? MORAColor.gray4,
+                            color:MORAColor.gray4,
                           ),
                   ),
                   child: Icon(
                     Icons.check,
                     color: isChecked
                         ? MORAColor.white
-                        : defaultColor ?? MORAColor.gray4,
+                        : MORAColor.gray4,
                     size: 17,
                   ),
                 ),
-                SizedBox(
-                  width: 4,
-                ),
-                Text(
-                  text ?? '위 내용에 동의합니다.',
-                  style: textStyle ??
-                      moraText.fontSize16.copyWith(
-                          color: MORAColor.gray1,
-                          fontWeight: FontWeight.w700,
-                          height: 1.0),
-                ),
-              ],
-            )),
-      ),
+              ),
+              SizedBox(
+                width: 4,
+              ),
+              Text(
+                '위 내용에 동의합니다.',
+                style:moraText.fontSize16.copyWith(
+                        color: MORAColor.gray1,
+                        fontWeight: FontWeight.w700,
+                        height: 1.0),
+              ),
+            ],
+          )),
     );
   }
 }
@@ -128,21 +118,27 @@ Widget RoundButton({
     onTap: () {
       if (isEnable) {
         onClick();
-      } else {}
+      } else {
+      }
     },
     child: Container(
       width: double.infinity,
-      padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
       decoration: BoxDecoration(
           color: isEnable
               ? color ?? MORAColor.primaryColor.shade500
               : MORAColor.gray4,
           borderRadius: BorderRadius.circular(borderRadius ?? 16)),
-      child: Center(
-        child: Text(
-          text,
-          style: moraText.fontSize18.copyWith(
-              color: MORAColor.white, fontWeight: FontWeight.w700, height: 1.0),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
+        child: Center(
+            child:Text(
+              text,
+              style:moraText.fontSize18.copyWith(color: MORAColor.white, fontWeight: FontWeight.w700,),
+              textAlign: TextAlign.start,
+              textHeightBehavior: const TextHeightBehavior(
+                leadingDistribution: TextLeadingDistribution.even
+              ),
+            ),
         ),
       ),
     ),
