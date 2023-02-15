@@ -23,72 +23,82 @@ class InformationProvisionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FittedBox(
-      fit: BoxFit.fitWidth,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            '$userName 님의 고관절 운동 플랜',
-            style: titleTextStyle,
-          ),
-          Text.rich(
-            TextSpan(text: hospitalName, style: gray1, children: [
-              WidgetSpan(
-                  child: SizedBox(
-                    width: 24,
-                  )),
-              TextSpan(
-                text: '배정일',
-                style: gray3,
-              ),
-              WidgetSpan(
-                  child: SizedBox(
-                    width: 8,
-                  )),
-              TextSpan(text: assignmentDate, style: gray1)
-            ]),
-            maxLines: 1,
-          ),
-          SizedBox(
-            height: 3,
-          ),
-          Text.rich(
-            TextSpan(text: '담담의', style: gray3, children: [
-              WidgetSpan(
-                  child: SizedBox(
-                    width: 8,
-                  )),
-              TextSpan(text: doctorName, style: gray1),
-              WidgetSpan(
-                  child: SizedBox(
-                    width: 8,
-                  )),
-              TextSpan(text: '담당치료사', style: gray3),
-              WidgetSpan(
-                  child: SizedBox(
-                    width: 8,
-                  )),
-              TextSpan(text: therapistName, style: gray1)
-            ]),
-            maxLines: 1,
-          ),
-          SizedBox(
-            height: 3,
-          ),
-          Text.rich(
-            TextSpan(text: '주의사항', style: gray3, children: [
-              WidgetSpan(
-                  child: SizedBox(
-                    width: 8,
-                  )),
-              TextSpan(text: '운동 전후 스트레칭을 해주세요.', style: gray1)
-            ]),
-            maxLines: 1,
-          )
-        ],
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          '$userName 님의 고관절 운동 플랜',
+          style: titleTextStyle,
+        ),
+        Text.rich(
+          TextSpan(children: [
+            TextSpan(
+              text: hospitalName,
+              style: gray1,
+            ),
+            WidgetSpan(
+                child: SizedBox(
+              width: 24,
+            )),
+            TextSpan(
+              text: '배정일',
+              style: gray3,
+            ),
+            WidgetSpan(
+                child: SizedBox(
+              width: 8,
+            )),
+            TextSpan(text: assignmentDate, style: gray1)
+          ]),
+        ),
+
+        SizedBox(
+          height: 3,
+        ),
+
+        Text.rich(
+          TextSpan(children: [
+            TextSpan(
+              text: '담담의',
+              style: gray3,
+            ),
+            WidgetSpan(
+                child: SizedBox(
+              width: 8,
+            )),
+            TextSpan(text: doctorName, style: gray1),
+            WidgetSpan(
+                child: SizedBox(
+              width: 8,
+            )),
+            TextSpan(text: '담당치료사', style: gray3),
+            WidgetSpan(
+                child: SizedBox(
+              width: 8,
+            )),
+            TextSpan(text: therapistName, style: gray1)
+          ]),
+        ),
+
+        SizedBox(
+          height: 3,
+        ),
+
+        Text.rich(
+          TextSpan(children: [
+            TextSpan(
+              text: '주의사항',
+              style: gray3,
+            ),
+            WidgetSpan(
+                child: SizedBox(
+              width: 8,
+            )),
+            TextSpan(text: '운동 전후 스트레칭을 해주세요.', style: gray1)
+          ]),
+        )
+      ],
     );
   }
 }
