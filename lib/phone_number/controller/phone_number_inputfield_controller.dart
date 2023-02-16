@@ -1,10 +1,19 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-class PhoneNumberController extends TextEditingController {
+class PhoneNumberController extends TextEditingController{
 
-  bool showIcon = false;
-  bool showHint = false;
+  late bool showIcon;
+  late bool showHint;
+
   String hintText = '-없이 숫자만 입력';
+
+
+  Future<void> setController() async {
+    showHint = false;
+    showIcon = false;
+    notifyListeners();
+  }
 
   onChangePhoneNumber() {
     RegExp regExp = RegExp('\\D');
@@ -16,27 +25,29 @@ class PhoneNumberController extends TextEditingController {
           phoneNumber.substring(3, 7) +
           '-' +
           phoneNumber.substring(7, 11);
-    }else{
+    } else {
       showIcon = false;
     }
   }
 
-  iconClick() {
-    showIcon = false;
-    showHint = false;
-    text = '';
-    notifyListeners();
-  }
-  textFieldClick(){
-    showHint = false;
-    if(text.length > 12){
-      showIcon = true;
-    }
-    notifyListeners();
-  }
-  outSideClick(){
-    showHint = true;
-    showIcon = false;
-    notifyListeners();
-  }
+  // iconClick() {
+  //   _showIcon = false;
+  //   _showHint = false;
+  //   text = '';
+  //   notifyListeners();
+  // }
+  //
+  // textFieldClick() {
+  //   _showHint = false;
+  //   if (text.length > 12) {
+  //     _showIcon = true;
+  //   }
+  //   notifyListeners();
+  // }
+  //
+  // outSideClick() {
+  //   _showHint = true;
+  //   _showIcon = false;
+  //   notifyListeners();
+  // }
 }

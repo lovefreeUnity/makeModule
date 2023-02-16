@@ -8,17 +8,20 @@ class PhoneNumberTextField extends StatefulWidget {
   PhoneNumberTextField({
     super.key,
     this.isObscure = false,
-    this.isFocusing = true,
   });
 
   @override
   State<PhoneNumberTextField> createState() => _PhoneNumberTextFieldState();
   bool isObscure;
-  bool isFocusing;
   PhoneNumberController phoneNumberController = PhoneNumberController();
 }
 
 class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
+  @override
+  void initState() async {
+    await widget.phoneNumberController.setController();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -48,7 +51,7 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             TextField(
-              autofocus: widget.isFocusing,
+              autofocus: true,
               showCursor: true,
               cursorColor: MORAColor.black,
               keyboardType: TextInputType.phone,
@@ -58,16 +61,7 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
               maxLength: 13,
               maxLengthEnforcement:
                   MaxLengthEnforcement.truncateAfterCompositionEnds,
-              onChanged: (str) {
-                widget.phoneNumberController.onChangePhoneNumber();
-                setState(() {});
-              },
-              onTap: () {
-                widget.phoneNumberController.textFieldClick();
-              },
-              onTapOutside: (event) {
-                widget.phoneNumberController.outSideClick();
-              },
+              // onChanged: widget.phoneNumberController.onChangePhoneNumber,
               decoration: InputDecoration(
                 hintText: widget.phoneNumberController.showHint
                     ? widget.phoneNumberController.hintText
@@ -87,6 +81,8 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
               ),
             ),
           ],
-        ));
+        ),
+    );
   }
 }
+//MediaQuery.of(context).viewInsets.bottom

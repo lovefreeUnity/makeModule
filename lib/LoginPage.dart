@@ -11,7 +11,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -22,6 +21,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Container(
           color: MORAColor.white,
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -41,24 +41,30 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.fromLTRB(16, 40, 16, 63),
                 child: PhoneNumberTextField(),
               ),
-              InkWell(
-                child: Container(
-                  width: double.infinity,
-                  color: MORAColor.primaryColor,
-                  padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
-                  child: Center(
-                    child: Text(
-                      '인증 문자 받기',
-                      style: moraText.fontSize18
-                          .copyWith(color:MORAColor.white,fontWeight: FontWeight.w700),
-                    ),
-                  ),
-                ),
-              )
             ],
           ),
         ),
       ),
+      bottomSheet: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          InkWell(
+            child: Container(
+              width: double.infinity,
+              color: MORAColor.primaryColor,
+              padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+              child: Center(
+                child: Text(
+                  '인증 문자 받기',
+                  style: moraText.fontSize18.copyWith(
+                      color: MORAColor.white, fontWeight: FontWeight.w700),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
+//MediaQuery.of(context).viewInsets.bottom
