@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:grapth/textfield_controller/textfield_controller.dart';
 import '../../res/everex_theme.dart';
 
 class PhoneNumberTextField extends StatefulWidget {
@@ -11,8 +10,7 @@ class PhoneNumberTextField extends StatefulWidget {
     this.hintText = '',
     required this.textFieldLabel,
     required this.inputFormatters,
-    this.errorText,
-    required this.textFieldController
+    this.errorText
   });
 
   @override
@@ -23,7 +21,6 @@ class PhoneNumberTextField extends StatefulWidget {
   String hintText;
   String? errorText;
   List<TextInputFormatter> inputFormatters;
-  TextFieldController textFieldController;
 }
 
 class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
