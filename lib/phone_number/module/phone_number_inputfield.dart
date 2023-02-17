@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import '../../res/everex_theme.dart';
 import '../controller/phone_number_inputfield_controller.dart';
 
@@ -8,20 +7,25 @@ class PhoneNumberTextField extends StatefulWidget {
   PhoneNumberTextField({
     super.key,
     this.isObscure = false,
+    this.hintText = '',
+    required this.textInputFieldController,
   });
 
   @override
   State<PhoneNumberTextField> createState() => _PhoneNumberTextFieldState();
   bool isObscure;
-  PhoneNumberController phoneNumberController = PhoneNumberController();
+  String hintText;
+  TextInputFieldController textInputFieldController;
 }
 
 class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
+
   @override
-  void initState() async {
-    await widget.phoneNumberController.setController();
+  void initState(){
     super.initState();
+    widget.textInputFieldController.setTextFieldController();
   }
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -56,20 +60,23 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
               cursorColor: MORAColor.black,
               keyboardType: TextInputType.phone,
               textAlignVertical: TextAlignVertical.center,
-              controller: widget.phoneNumberController,
               obscureText: widget.isObscure,
-              maxLength: 13,
-              maxLengthEnforcement:
-                  MaxLengthEnforcement.truncateAfterCompositionEnds,
-              // onChanged: widget.phoneNumberController.onChangePhoneNumber,
+              onChanged:(text) {
+                widget.textInputFieldController.onChangePhoneNumber(text);
+              },
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+                LengthLimitingTextInputFormatter(11)
+              ],
+              onEditingComplete: (){
+                //입력 완료 시
+              },
               decoration: InputDecoration(
-                hintText: widget.phoneNumberController.showHint
-                    ? widget.phoneNumberController.hintText
-                    : '',
-                suffixIcon: widget.phoneNumberController.showIcon
+                hintText: widget.hintText,
+                suffixIcon: widget.textInputFieldController.showIcon
                     ? InkWell(
                         onTap: () {
-                          widget.phoneNumberController.clear();
+
                         },
                         child: const Icon(
                           Icons.circle,
@@ -85,4 +92,3 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
     );
   }
 }
-//MediaQuery.of(context).viewInsets.bottom
