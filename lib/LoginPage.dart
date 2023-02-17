@@ -16,10 +16,9 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       body: Container(
         color: MORAColor.white,
-        height: MediaQuery.of(context).size.height,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -47,24 +46,27 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       ),
-      bottomSheet: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          InkWell(
-            child: Container(
-              width: double.infinity,
-              color: MORAColor.primaryColor,
-              padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
-              child: Center(
-                child: Text(
-                  widget.bottomSheetText,
-                  style: moraText.fontSize18.copyWith(
-                      color: MORAColor.white, fontWeight: FontWeight.w700),
+      bottomSheet: Padding(
+        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            InkWell(
+              child: Container(
+                width: double.infinity,
+                color: MORAColor.primaryColor,
+                padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+                child: Center(
+                  child: Text(
+                    widget.bottomSheetText,
+                    style: moraText.fontSize18.copyWith(
+                        color: MORAColor.white, fontWeight: FontWeight.w700),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
