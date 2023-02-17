@@ -7,11 +7,13 @@ class PhoneNumberTextField extends StatefulWidget {
     super.key,
     this.isObscure = false,
     this.hintText = '',
+    required this.textFieldLabel,
   });
 
   @override
   State<PhoneNumberTextField> createState() => _PhoneNumberTextFieldState();
   bool isObscure;
+  String textFieldLabel;
   String hintText;
 }
 
@@ -49,7 +51,9 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text(widget.textFieldLabel,style: moraText.fontSize16.copyWith(fontWeight: FontWeight.w500),),
           TextField(
             autofocus: true,
             showCursor: true,
@@ -58,10 +62,11 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
             textAlignVertical: TextAlignVertical.center,
             obscureText: widget.isObscure,
             onChanged: (text) {
+
             },
             inputFormatters: [
               FilteringTextInputFormatter.digitsOnly,
-              LengthLimitingTextInputFormatter(13)
+              LengthLimitingTextInputFormatter(11),
             ],
             onEditingComplete: () {
             },
