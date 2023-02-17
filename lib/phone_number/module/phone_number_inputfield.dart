@@ -8,7 +8,7 @@ class PhoneNumberTextField extends StatefulWidget {
     this.autoFocus = false,
     this.isObscure = false,
     this.hintText = '',
-    required this.textFieldLabel,
+    this.textFieldLabel,
     required this.inputFormatters,
     this.errorText
   });
@@ -17,7 +17,7 @@ class PhoneNumberTextField extends StatefulWidget {
   State<PhoneNumberTextField> createState() => _PhoneNumberTextFieldState();
   bool autoFocus;
   bool isObscure;
-  String textFieldLabel;
+  String? textFieldLabel;
   String hintText;
   String? errorText;
   List<TextInputFormatter> inputFormatters;
@@ -72,7 +72,7 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(widget.textFieldLabel,style: moraText.fontSize16.copyWith(fontWeight: FontWeight.w500),),
+          Text(widget.textFieldLabel??'',style: moraText.fontSize16.copyWith(fontWeight: FontWeight.w500),),
           TextField(
             autofocus: widget.autoFocus,
             showCursor: true,
