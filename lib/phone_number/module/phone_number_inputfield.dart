@@ -9,7 +9,8 @@ class PhoneNumberTextField extends StatefulWidget {
     this.isObscure = false,
     this.hintText = '',
     required this.textFieldLabel,
-    required this.inputFormatters
+    required this.inputFormatters,
+    required this.errorText
   });
 
   @override
@@ -18,6 +19,7 @@ class PhoneNumberTextField extends StatefulWidget {
   bool isObscure;
   String textFieldLabel;
   String hintText;
+  String errorText;
   List<TextInputFormatter> inputFormatters;
 }
 
@@ -83,6 +85,7 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
             },
             decoration: InputDecoration(
               hintText: widget.hintText,
+              errorText: widget.errorText,
               suffixIcon: Icon(
                 Icons.arrow_right_alt_outlined,
                 size:19,

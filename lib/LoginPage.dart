@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(11),
-                ],
+                ], errorText: '에러가 떳습니다.',
               ),
             ),
           ],
