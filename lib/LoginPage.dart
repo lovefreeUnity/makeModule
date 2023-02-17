@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:grapth/textfeild_controller/textfield_controller.dart';
 import 'res/everex_theme.dart';
 import 'phone_number/module/phone_number_inputfield.dart';
 
@@ -13,6 +14,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final ScrollController _scrollController = ScrollController();
+  final TextFieldController _textFieldController = TextFieldController();
 
   @override
   Widget build(BuildContext context) {
@@ -46,14 +48,17 @@ class _LoginPageState extends State<LoginPage> {
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(11),
-                ], errorText: null,
+                ],
+                errorText: null,
+                textFieldController: _textFieldController,
               ),
             ),
           ],
         ),
       ),
       bottomSheet: Padding(
-        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        padding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
