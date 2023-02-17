@@ -10,7 +10,7 @@ class PhoneNumberTextField extends StatefulWidget {
     this.hintText = '',
     required this.textFieldLabel,
     required this.inputFormatters,
-    required this.errorText
+    this.errorText
   });
 
   @override
@@ -19,7 +19,7 @@ class PhoneNumberTextField extends StatefulWidget {
   bool isObscure;
   String textFieldLabel;
   String hintText;
-  String errorText;
+  String? errorText;
   List<TextInputFormatter> inputFormatters;
 }
 
