@@ -10,7 +10,8 @@ class PhoneNumberTextField extends StatefulWidget {
     this.hintText = '',
     this.textFieldLabel,
     required this.inputFormatters,
-    this.errorText
+    this.errorText,
+    this.suffixIcon
   });
 
   @override
@@ -21,6 +22,7 @@ class PhoneNumberTextField extends StatefulWidget {
   String hintText;
   String? errorText;
   List<TextInputFormatter> inputFormatters;
+  Icon? suffixIcon;
 }
 
 class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
@@ -92,10 +94,7 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
             decoration: InputDecoration(
               hintText: widget.hintText,
               errorText: widget.errorText,
-              suffixIcon: Icon(
-                Icons.arrow_right_alt_outlined,
-                size:19,
-              ),
+              suffixIcon: widget.suffixIcon,
               suffixIconColor: MORAColor.gray4,
             ),
           ),
