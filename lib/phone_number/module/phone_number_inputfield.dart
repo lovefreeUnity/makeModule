@@ -9,6 +9,7 @@ class PhoneNumberTextField extends StatefulWidget {
     this.isObscure = false,
     this.hintText = '',
     required this.textFieldLabel,
+    required this.inputFormatters
   });
 
   @override
@@ -17,6 +18,7 @@ class PhoneNumberTextField extends StatefulWidget {
   bool isObscure;
   String textFieldLabel;
   String hintText;
+  List<TextInputFormatter> inputFormatters;
 }
 
 class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
@@ -66,10 +68,7 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
             onChanged: (text) {
 
             },
-            inputFormatters: [
-              FilteringTextInputFormatter.digitsOnly,
-              LengthLimitingTextInputFormatter(11),
-            ],
+            inputFormatters: widget.inputFormatters,
             onEditingComplete: () {
             },
             onTapOutside: (event){

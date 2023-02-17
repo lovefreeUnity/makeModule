@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'res/everex_theme.dart';
 import 'phone_number/module/phone_number_inputfield.dart';
 
@@ -42,6 +43,10 @@ class _LoginPageState extends State<LoginPage> {
                 autoFocus: true,
                 hintText: '-없이 숫자만 입력',
                 textFieldLabel: '휴대폰 번호',
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(11),
+                ],
               ),
             ),
           ],
