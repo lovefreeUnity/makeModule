@@ -5,6 +5,7 @@ import '../../res/everex_theme.dart';
 class PhoneNumberTextField extends StatefulWidget {
   PhoneNumberTextField({
     super.key,
+    this.autoFocus = false,
     this.isObscure = false,
     this.hintText = '',
     required this.textFieldLabel,
@@ -12,6 +13,7 @@ class PhoneNumberTextField extends StatefulWidget {
 
   @override
   State<PhoneNumberTextField> createState() => _PhoneNumberTextFieldState();
+  bool autoFocus;
   bool isObscure;
   String textFieldLabel;
   String hintText;
@@ -55,7 +57,7 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
         children: [
           Text(widget.textFieldLabel,style: moraText.fontSize16.copyWith(fontWeight: FontWeight.w500),),
           TextField(
-            autofocus: true,
+            autofocus: widget.autoFocus,
             showCursor: true,
             cursorColor: MORAColor.black,
             keyboardType: TextInputType.phone,

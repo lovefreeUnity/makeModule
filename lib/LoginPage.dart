@@ -39,6 +39,7 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 40, 16, 63),
               child: PhoneNumberTextField(
+                autoFocus: true,
                 hintText: '-없이 숫자만 입력',
                 textFieldLabel: '휴대폰 번호',
               ),
