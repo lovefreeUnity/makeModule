@@ -59,7 +59,13 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
               color: MORAColor.red
             )
           ),
-          errorStyle: moraText.fontSize12.copyWith(color: MORAColor.red)
+          errorStyle: moraText.fontSize12.copyWith(color: MORAColor.red),
+          focusedErrorBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(8)),
+              borderSide: BorderSide(
+                  color: MORAColor.red
+              )
+          ),
         ),
       ),
       child: Column(
