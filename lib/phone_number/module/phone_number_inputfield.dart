@@ -51,6 +51,12 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
               color: MORAColor.mintColorSub,
             ),
           ),
+          errorBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(8)),
+            borderSide: BorderSide(
+              color: MORAColor.red
+            )
+          )
         ),
       ),
       child: Column(
