@@ -9,20 +9,22 @@ class PhoneNumberTextField extends StatefulWidget {
       this.autoFocus = false,
       this.isObscure = false,
       this.hintText = '',
-      required this.textFieldLabel,
+      this.textFieldLabel,
       required this.inputFormatters,
       this.errorText,
+      this.suffixIcon,
       required this.textFieldController});
 
   @override
   State<PhoneNumberTextField> createState() => _PhoneNumberTextFieldState();
   bool autoFocus;
   bool isObscure;
-  String textFieldLabel;
+  String? textFieldLabel;
   String hintText;
   String? errorText;
   List<TextInputFormatter> inputFormatters;
-  TextFieldController textFieldController;
+  TextFieldCounter textFieldController;
+  Icon? suffixIcon;
 }
 
 class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
@@ -35,40 +37,14 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
   Widget build(BuildContext context) {
     return Theme(
       data: ThemeData(
-        inputDecorationTheme: InputDecorationTheme(
-          filled: true,
-          fillColor: MORAColor.white,
-          hintStyle: moraText.fontSize16.copyWith(
-            color: MORAColor.gray3,
-          ),
-          contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-          enabledBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8)),
-            borderSide: BorderSide(
-              color: MORAColor.gray4,
-            ),
-          ),
-          focusedBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8)),
-            borderSide: BorderSide(
-              color: MORAColor.mintColorSub,
-            ),
-          ),
-          errorBorder: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(8)),
-              borderSide: BorderSide(color: MORAColor.red)),
-          errorStyle: moraText.fontSize12.copyWith(color: MORAColor.red),
-          focusedErrorBorder: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(8)),
-              borderSide: BorderSide(color: MORAColor.red)),
-        ),
+        inputDecorationTheme: textFieldTheme,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            widget.textFieldLabel,
+            widget.textFieldLabel ?? '',
             style: moraText.fontSize16.copyWith(fontWeight: FontWeight.w500),
           ),
           TextField(
@@ -78,7 +54,11 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
             keyboardType: TextInputType.phone,
             textAlignVertical: TextAlignVertical.center,
             obscureText: widget.isObscure,
-            onChanged: (text) {},
+            onChanged: (text) {
+              setState(() {
+                widget.textFieldController.onChanged();
+              });
+            },
             inputFormatters: widget.inputFormatters,
             onEditingComplete: () {},
             onTapOutside: (event) {
@@ -88,12 +68,8 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
               hintText: widget.hintText,
               errorText: widget.errorText,
               suffixIcon: InkWell(
-                onTap: widget.textFieldController.clear,
-                child: Icon(
-                  Icons.arrow_right_alt_outlined,
-                  size: 19,
-                ),
-              ),
+                  onTap: widget.textFieldController.clear,
+                  child: widget.suffixIcon),
               suffixIconColor: MORAColor.gray4,
             ),
             controller: widget.textFieldController,
@@ -103,3 +79,31 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
     );
   }
 }
+
+InputDecorationTheme textFieldTheme = InputDecorationTheme(
+  filled: true,
+  fillColor: MORAColor.white,
+  hintStyle: moraText.fontSize16.copyWith(
+    color: MORAColor.gray3,
+  ),
+  contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+  enabledBorder: const OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(8)),
+    borderSide: BorderSide(
+      color: MORAColor.gray4,
+    ),
+  ),
+  focusedBorder: const OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(8)),
+    borderSide: BorderSide(
+      color: MORAColor.mintColorSub,
+    ),
+  ),
+  errorBorder: const OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(8)),
+      borderSide: BorderSide(color: MORAColor.red)),
+  errorStyle: moraText.fontSize12.copyWith(color: MORAColor.red),
+  focusedErrorBorder: const OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(8)),
+      borderSide: BorderSide(color: MORAColor.red)),
+);
