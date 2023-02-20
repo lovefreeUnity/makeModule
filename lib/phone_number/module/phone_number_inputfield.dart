@@ -13,9 +13,7 @@ class PhoneNumberTextField extends StatefulWidget {
       required this.inputFormatters,
       this.errorText,
       this.suffixIcon,
-      required this.textFieldController,
-      this.bottomSheetController
-      });
+      this.bottomSheetController});
 
   @override
   State<PhoneNumberTextField> createState() => _PhoneNumberTextFieldState();
@@ -25,20 +23,27 @@ class PhoneNumberTextField extends StatefulWidget {
   String hintText;
   String? errorText;
   List<TextInputFormatter> inputFormatters;
-  TextFieldCounter textFieldController;
   Icon? suffixIcon;
   BottomSheetController? bottomSheetController;
 }
 
 class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
+
+  TextFieldCounter textEditController = TextFieldCounter();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   void dispose() {
     super.dispose();
-    if(widget.bottomSheetController != null){
+    if (widget.bottomSheetController != null) {
       widget.bottomSheetController!.dispose();
     }
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -53,33 +58,45 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
             widget.textFieldLabel ?? '',
             style: moraText.fontSize16.copyWith(fontWeight: FontWeight.w500),
           ),
-          TextField(
-            autofocus: widget.autoFocus,
-            showCursor: true,
-            cursorColor: MORAColor.black,
-            keyboardType: TextInputType.phone,
-            textAlignVertical: TextAlignVertical.center,
-            obscureText: widget.isObscure,
-            onChanged: (text) {
-              setState(() {
-                widget.bottomSheetController!.onChanged(text.length);
-              });
+          StreamBuilder(
+            initialData: '',
+            stream: textEditController.inputText,
+            builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+              return TextField(
+                controller: textEditController,
+                autofocus: widget.autoFocus,
+                showCursor: true,
+                cursorColor: MORAColor.black,
+                keyboardType: TextInputType.phone,
+                textAlignVertical: TextAlignVertical.center,
+                obscureText: widget.isObscure,
+                onChanged: (text) {
+                  setState(() {
+                    textEditController.onChanged();
+                    widget.bottomSheetController!.onChanged(text);
+                  });
+                },
+                inputFormatters: widget.inputFormatters,
+                onEditingComplete: () {},
+                onTapOutside: (event) {
+                  FocusScope.of(context).unfocus();
+                },
+                decoration: InputDecoration(
+                  hintText: widget.hintText,
+                  errorText: widget.errorText,
+                  suffixIcon: snapshot.data != ''
+                      ? InkWell(
+                          onTap: () {
+                            textEditController.removeEvent();
+                            widget.bottomSheetController!.removeEvent();
+                          },
+                          child: widget.suffixIcon)
+                      : null,
+                  suffixIconColor: MORAColor.gray4,
+                ),
+              );
             },
-            inputFormatters: widget.inputFormatters,
-            onEditingComplete: () {},
-            onTapOutside: (event) {
-              FocusScope.of(context).unfocus();
-            },
-            decoration: InputDecoration(
-              hintText: widget.hintText,
-              errorText: widget.errorText,
-              suffixIcon: InkWell(
-                  onTap: widget.textFieldController.clear,
-                  child: widget.suffixIcon),
-              suffixIconColor: MORAColor.gray4,
-            ),
-            controller: widget.textFieldController,
-          ),
+          )
         ],
       ),
     );

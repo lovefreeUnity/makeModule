@@ -4,10 +4,25 @@ import 'package:flutter/cupertino.dart';
 
 class TextFieldCounter extends TextEditingController{
 
-  StreamController<int> textController = StreamController();
-  Stream<int> get textLength => textController.stream;
+  final StreamController<String> _textController = StreamController();
+  Stream<String> get inputText => _textController.stream;
 
+  TextFieldCounter(){
+    _textController.sink.add('');
+  }
+  onChanged(){
+    _textController.sink.add(text);
+  }
+  removeEvent(){
+    super.clear();
+  }
+  @override
+  void dispose() {
+    _textController.close();
+    super.dispose();
+  }
 }
+
 class BottomSheetController extends ChangeNotifier{
   final StreamController<bool> _bottomController = StreamController();
   Stream<bool> get bottomSheetStream => _bottomController.stream;
@@ -16,14 +31,17 @@ class BottomSheetController extends ChangeNotifier{
     _bottomController.sink.add(true);
   }
 
-  onChanged(int textLength){
-    if(textLength > 10){
+  onChanged(String text){
+    if(text.length > 10){
       _bottomController.sink.add(false);
     }else{
       _bottomController.sink.add(true);
     }
   }
 
+  removeEvent(){
+    _bottomController.add(true);
+  }
 
   @override
   dispose() {

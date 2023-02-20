@@ -4,7 +4,6 @@ import 'package:grapth/textfeild_controller/textfield_controller.dart';
 import 'res/everex_theme.dart';
 import 'phone_number/module/phone_number_inputfield.dart';
 
-
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
 
@@ -12,9 +11,10 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
   String bottomSheetText = '인증 문자 받기';
 }
+
 class _LoginPageState extends State<LoginPage> {
-  final TextFieldCounter _textFieldController = TextFieldCounter();
   final BottomSheetController _bottomSheetController = BottomSheetController();
+
   @override
   void initState() {
     super.initState();
@@ -54,7 +54,6 @@ class _LoginPageState extends State<LoginPage> {
                   LengthLimitingTextInputFormatter(11),
                 ],
                 errorText: null,
-                textFieldController: _textFieldController,
                 suffixIcon: Icon(
                   Icons.arrow_right_alt_outlined,
                   size: 19,
@@ -65,25 +64,38 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       ),
-      bottomSheet: StreamBuilder(
-        initialData: true,
-        stream: _bottomSheetController.bottomSheetStream,
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+      bottomSheet: bottomSheet()
+    );
+  }
+
+  Widget bottomSheet(){
+    return StreamBuilder(
+      initialData: true,
+      stream: _bottomSheetController.bottomSheetStream,
+      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        const AsyncSnapshot.waiting();
         return Padding(
-          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               InkWell(
+                onTap: (){
+                  print("${snapshot.data}");
+                },
                 child: Container(
                   width: double.infinity,
-                  color: snapshot.data?? false ? MORAColor.gray4: MORAColor.primaryColor.shade500,
+                  color: snapshot.data ?? false
+                      ? MORAColor.gray4
+                      : MORAColor.primaryColor.shade500,
                   padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
                   child: Center(
                     child: Text(
                       widget.bottomSheetText,
                       style: moraText.fontSize18.copyWith(
-                          color: MORAColor.white, fontWeight: FontWeight.w700),
+                          color: MORAColor.white,
+                          fontWeight: FontWeight.w700),
                     ),
                   ),
                 ),
@@ -92,7 +104,6 @@ class _LoginPageState extends State<LoginPage> {
           ),
         );
       },
-      ),
     );
   }
 }
