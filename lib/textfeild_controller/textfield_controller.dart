@@ -1,10 +1,33 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 
-class TextFieldController extends TextEditingController{
-  late bool _disableBottomSheet;
-  bool get disableBottomSheet => _disableBottomSheet;
+class TextFieldCounter extends TextEditingController{
 
-  setController(){
-    _disableBottomSheet = true;
+  StreamController<int> textController = StreamController();
+  Stream<int> get textLength => textController.stream;
+
+}
+class BottomSheetController extends ChangeNotifier{
+  final StreamController<bool> _bottomController = StreamController();
+  Stream<bool> get bottomSheetStream => _bottomController.stream;
+
+  BottomSheetController(){
+    _bottomController.sink.add(true);
+  }
+
+  onChanged(int textLength){
+    if(textLength > 10){
+      _bottomController.sink.add(false);
+    }else{
+      _bottomController.sink.add(true);
+    }
+  }
+
+
+  @override
+  dispose() {
+    _bottomController.close();
+    super.dispose();
   }
 }

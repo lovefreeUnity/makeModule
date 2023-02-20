@@ -13,7 +13,9 @@ class PhoneNumberTextField extends StatefulWidget {
       required this.inputFormatters,
       this.errorText,
       this.suffixIcon,
-      required this.textFieldController});
+      required this.textFieldController,
+      this.bottomSheetController
+      });
 
   @override
   State<PhoneNumberTextField> createState() => _PhoneNumberTextFieldState();
@@ -25,14 +27,18 @@ class PhoneNumberTextField extends StatefulWidget {
   List<TextInputFormatter> inputFormatters;
   TextFieldCounter textFieldController;
   Icon? suffixIcon;
+  BottomSheetController? bottomSheetController;
 }
 
 class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
   @override
-  void initState() {
-    super.initState();
-  }
+  void dispose() {
+    super.dispose();
+    if(widget.bottomSheetController != null){
+      widget.bottomSheetController!.dispose();
+    }
 
+  }
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -56,7 +62,7 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
             obscureText: widget.isObscure,
             onChanged: (text) {
               setState(() {
-                widget.textFieldController.onChanged();
+                widget.bottomSheetController!.onChanged(text.length);
               });
             },
             inputFormatters: widget.inputFormatters,
