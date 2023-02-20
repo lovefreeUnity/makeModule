@@ -13,7 +13,9 @@ class PhoneNumberTextField extends StatefulWidget {
       required this.inputFormatters,
       this.errorText,
       this.suffixIcon,
-      this.bottomSheetController});
+      this.bottomSheetController,
+      required this.keyBordType
+      });
 
   @override
   State<PhoneNumberTextField> createState() => _PhoneNumberTextFieldState();
@@ -25,6 +27,7 @@ class PhoneNumberTextField extends StatefulWidget {
   List<TextInputFormatter> inputFormatters;
   Icon? suffixIcon;
   BottomSheetController? bottomSheetController;
+  TextInputType keyBordType;
 }
 
 class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
@@ -67,7 +70,7 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
                 autofocus: widget.autoFocus,
                 showCursor: true,
                 cursorColor: MORAColor.black,
-                keyboardType: TextInputType.phone,
+                keyboardType: widget.keyBordType,
                 textAlignVertical: TextAlignVertical.center,
                 obscureText: widget.isObscure,
                 onChanged: (text) {
