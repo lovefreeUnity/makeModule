@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:grapth/textfeild_controller/textfield_controller.dart';
-import '../../res/everex_theme.dart';
+import '../../../res/everex_theme.dart';
 
 class PhoneNumberTextField extends StatefulWidget {
   PhoneNumberTextField({
@@ -21,6 +21,12 @@ class PhoneNumberTextField extends StatefulWidget {
 class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
   NumberTextFieldController textEditController =
       NumberTextFieldController();
+
+  @override
+  void dispose() {
+    textEditController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
