@@ -4,47 +4,26 @@ import 'package:grapth/textfeild_controller/textfield_controller.dart';
 import '../../res/everex_theme.dart';
 
 class PhoneNumberTextField extends StatefulWidget {
-  PhoneNumberTextField(
-      {super.key,
-      this.autoFocus = false,
-      this.isObscure = false,
-      this.hintText = '',
-      this.textFieldLabel,
-      required this.inputFormatters,
-      this.errorText,
-      this.suffixIcon,
-      this.bottomSheetController,
-      required this.keyBordType
-      });
+  PhoneNumberTextField({
+    super.key,
+    this.autoFocus = false,
+    required this.hintText,
+  });
+
+  bool autoFocus;
+  String hintText;
+  String? errorText; // controller 등으로 상황에 맞게바꿀 수 있게 해야 될 것 같다.
 
   @override
   State<PhoneNumberTextField> createState() => _PhoneNumberTextFieldState();
-  bool autoFocus;
-  bool isObscure;
-  String? textFieldLabel;
-  String hintText;
-  String? errorText;
-  List<TextInputFormatter> inputFormatters;
-  Icon? suffixIcon;
-  BottomSheetController? bottomSheetController;
-  TextInputType keyBordType;
 }
 
 class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
+  PhoneNumberTextFieldController textEditController =
+      PhoneNumberTextFieldController();
 
-  TextFieldCounter textEditController = TextFieldCounter();
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    if (widget.bottomSheetController != null) {
-      widget.bottomSheetController!.dispose();
-    }
+  dispose() {
+    textEditController.dispose();
   }
 
   @override
@@ -58,42 +37,48 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            widget.textFieldLabel ?? '',
+            '휴대폰 번호',
             style: moraText.fontSize16.copyWith(fontWeight: FontWeight.w500),
           ),
           StreamBuilder(
             initialData: '',
             stream: textEditController.inputText,
-            builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+            builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
               return TextField(
                 controller: textEditController,
                 autofocus: widget.autoFocus,
                 showCursor: true,
                 cursorColor: MORAColor.black,
-                keyboardType: widget.keyBordType,
-                textAlignVertical: TextAlignVertical.center,
-                obscureText: widget.isObscure,
+                keyboardType: TextInputType.phone,
+                obscureText: false,
                 onChanged: (text) {
-                  setState(() {
-                    textEditController.onChanged();
-                    widget.bottomSheetController!.onChanged(text);
+                  textEditController.onChanged();
+                  textEditController.addListener(() {
+                    print("input : ${text}");
+                    print("text : ${textEditController.text}");
                   });
                 },
-                inputFormatters: widget.inputFormatters,
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(11),
+                ],
                 onEditingComplete: () {},
                 onTapOutside: (event) {
                   FocusScope.of(context).unfocus();
                 },
                 decoration: InputDecoration(
-                  hintText: widget.hintText,
-                  errorText: widget.errorText,
-                  suffixIcon: snapshot.data != ''
+                  hintText: '-없이 숫자만 입력',
+                  errorText: null,
+                  suffixIcon: snapshot.data!.isNotEmpty
                       ? InkWell(
                           onTap: () {
                             textEditController.removeEvent();
-                            widget.bottomSheetController!.removeEvent();
                           },
-                          child: widget.suffixIcon)
+                          child: Icon(
+                            Icons.arrow_right_alt_outlined,
+                            size: 19,
+                          ),
+                        )
                       : null,
                   suffixIconColor: MORAColor.gray4,
                 ),
