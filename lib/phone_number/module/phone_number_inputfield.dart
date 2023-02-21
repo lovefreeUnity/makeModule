@@ -19,12 +19,8 @@ class PhoneNumberTextField extends StatefulWidget {
 }
 
 class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
-  PhoneNumberTextFieldController textEditController =
-      PhoneNumberTextFieldController();
-
-  dispose() {
-    textEditController.dispose();
-  }
+  NumberTextFieldController textEditController =
+      NumberTextFieldController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +50,6 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
                 onChanged: (text) {
                   textEditController.onChanged();
                   textEditController.addListener(() {
-                    print("input : ${text}");
                     print("text : ${textEditController.text}");
                   });
                 },

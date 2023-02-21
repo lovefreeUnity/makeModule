@@ -1,51 +1,24 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 
-class TextFieldCounter extends TextEditingController{
+class NumberTextFieldController extends TextEditingController{
+  final StreamController<String> _textStreamController = StreamController();
+  Stream<String> get inputText => _textStreamController.stream;
 
-  final StreamController<String> _textController = StreamController();
-  Stream<String> get inputText => _textController.stream;
+  //텍스트 mask를 여기 다가 넣어 줘야 하나
 
-  TextFieldCounter(){
-    _textController.sink.add('');
-  }
   onChanged(){
-    _textController.sink.add(text);
+    _textStreamController.sink.add(text);
   }
+
   removeEvent(){
     super.clear();
+    _textStreamController.sink.add('');
   }
+
   @override
   void dispose() {
-    _textController.close();
-    super.dispose();
-  }
-}
-
-class BottomSheetController extends ChangeNotifier{
-  final StreamController<bool> _bottomController = StreamController();
-  Stream<bool> get bottomSheetStream => _bottomController.stream;
-
-  BottomSheetController(){
-    _bottomController.sink.add(true);
-  }
-
-  onChanged(String text){
-    if(text.length > 10){
-      _bottomController.sink.add(false);
-    }else{
-      _bottomController.sink.add(true);
-    }
-  }
-
-  removeEvent(){
-    _bottomController.add(true);
-  }
-
-  @override
-  dispose() {
-    _bottomController.close();
+    _textStreamController.close();
     super.dispose();
   }
 }
