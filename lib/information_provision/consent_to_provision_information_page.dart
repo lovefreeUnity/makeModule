@@ -34,7 +34,6 @@ class _ConsentToProvisionInformationPageState
                     hospitalName: '연세바른정형외과',
                     assignmentDate: '22.10.27 (28일)',
                     doctorName: '이현수',
-                    therapistName: '김민지',
                   ),
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 32, 0, 32),

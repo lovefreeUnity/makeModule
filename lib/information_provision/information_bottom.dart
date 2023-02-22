@@ -28,7 +28,8 @@ class InformationBottom extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
-                      color: whiteColor),
+                      color: whiteColor,
+                      height: 1.5),
                 ),
               ),
             ),
