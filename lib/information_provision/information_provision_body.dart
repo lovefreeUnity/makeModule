@@ -5,6 +5,7 @@ class InformationProvisionBody extends StatelessWidget {
   Color primaryColor = Color(0xFF07BEB8);
   Color gray4 = Color(0xFFDDDDDD);
   Color gray1 = Color(0xFF545454);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -31,18 +32,20 @@ class InformationProvisionBody extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(8))),
           child: bodyTextWidget(
               "개인정보 제3자 제공",
-              "1) 제공하는 정보: 운동수행률, 통증지수, 플랜 난이도, 어려운 운동\n"
-                  "2) 제공받는 자: 담당 의료진 (상단에 표기된 담당의, 담당치료사) \n"
+              "1) 제공하는 정보: 운동수행률\n"
+                  "2) 제공받는 자: 담당 의료진 (상단에 표기된 담당의) \n"
                   "3) 제공목적: 환자 관리 및 재활운동 모니터링\n"
                   "4) 보유기간: 회원탈퇴 또는 이용자의 삭제요청시까지",
               titleStyle: TextStyle(
                   fontSize: 16,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500),
+                  color: Color(0xFF000000),
+                  fontWeight: FontWeight.w500,
+                  height: 1.5),
               textStyle: TextStyle(
                   fontSize: 14,
                   color: Color(0xFF545454),
-                  fontWeight: FontWeight.w400)),
+                  fontWeight: FontWeight.w400,
+                  height: 1.5)),
         ),
       ],
     );
@@ -56,16 +59,22 @@ class InformationProvisionBody extends StatelessWidget {
         Text(
           title,
           style: titleStyle ??
-              TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color : primaryColor ),
+              TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: primaryColor,
+                  height: 1.5),
         ),
         SizedBox(
           height: 8,
         ),
-        Text(
-          text,
-          style: textStyle ?? TextStyle(
-          color: Color(0xFF000000), fontWeight: FontWeight.w400,fontSize: 16)
-          )
+        Text(text,
+            style: textStyle ??
+                TextStyle(
+                    color: Color(0xFF000000),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                    height: 1.5))
       ],
     );
   }
