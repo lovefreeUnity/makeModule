@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:grapth/res/everex_theme.dart';
 
 class InformationProvisionBody extends StatelessWidget {
-  const InformationProvisionBody({Key? key}) : super(key: key);
-
+  InformationProvisionBody({Key? key}) : super(key: key);
+  Color primaryColor = Color(0xFF07BEB8);
+  Color gray4 = Color(0xFFDDDDDD);
+  Color gray1 = Color(0xFF545454);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,19 +26,23 @@ class InformationProvisionBody extends StatelessWidget {
           width: double.infinity,
           padding: EdgeInsets.fromLTRB(16, 16, 16, 16),
           decoration: BoxDecoration(
-              color: MORAColor.gray6,
-              border: Border.all(color: MORAColor.gray4),
+              color: Color(0xFFF9F9F9),
+              border: Border.all(color: gray4),
               borderRadius: BorderRadius.all(Radius.circular(8))),
           child: bodyTextWidget(
-            "개인정보 제3자 제공",
-            "1) 제공하는 정보: 운동수행률, 통증지수, 플랜 난이도, 어려운 운동\n"
-                "2) 제공받는 자: 담당 의료진 (상단에 표기된 담당의, 담당치료사) \n"
-                "3) 제공목적: 환자 관리 및 재활운동 모니터링\n"
-                "4) 보유기간: 회원탈퇴 또는 이용자의 삭제요청시까지",
-            titleStyle: moraText.fontSize16
-                .copyWith(color: Colors.black, fontWeight: FontWeight.w500),
-            textStyle: moraText.fontSize14.copyWith(color: MORAColor.gray1),
-          ),
+              "개인정보 제3자 제공",
+              "1) 제공하는 정보: 운동수행률, 통증지수, 플랜 난이도, 어려운 운동\n"
+                  "2) 제공받는 자: 담당 의료진 (상단에 표기된 담당의, 담당치료사) \n"
+                  "3) 제공목적: 환자 관리 및 재활운동 모니터링\n"
+                  "4) 보유기간: 회원탈퇴 또는 이용자의 삭제요청시까지",
+              titleStyle: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500),
+              textStyle: TextStyle(
+                  fontSize: 14,
+                  color: Color(0xFF545454),
+                  fontWeight: FontWeight.w400)),
         ),
       ],
     );
@@ -51,19 +56,16 @@ class InformationProvisionBody extends StatelessWidget {
         Text(
           title,
           style: titleStyle ??
-              moraText.fontSize18.copyWith(
-                  color: MORAColor.primaryColor.shade500,
-                  fontWeight: FontWeight.w700),
+              TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color : primaryColor ),
         ),
         SizedBox(
           height: 8,
         ),
         Text(
           text,
-          style: textStyle ??
-              moraText.fontSize16.copyWith(
-                  color: MORAColor.black, fontWeight: FontWeight.w400),
-        ),
+          style: textStyle ?? TextStyle(
+          color: Color(0xFF000000), fontWeight: FontWeight.w400,fontSize: 16)
+          )
       ],
     );
   }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:grapth/information_provision/information_provision_body.dart';
 import 'package:grapth/information_provision/information_title.dart';
 import 'package:grapth/information_provision/round_button.dart';
-import 'package:grapth/res/everex_theme.dart';
 
 class ConsentToProvisionInformationPage extends StatefulWidget {
   const ConsentToProvisionInformationPage({Key? key}) : super(key: key);
@@ -15,6 +14,9 @@ class ConsentToProvisionInformationPage extends StatefulWidget {
 class _ConsentToProvisionInformationPageState
     extends State<ConsentToProvisionInformationPage> {
   bool isDisabled = true;
+  Color primaryColor = Color(0xFF07BEB8);
+  Color gray4 = Color(0xFFDDDDDD);
+  Color gray1 = Color(0xFF545454);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class _ConsentToProvisionInformationPageState
           Padding(
             padding: EdgeInsets.fromLTRB(0, 32, 0, 32),
             child: Container(
-              color: MORAColor.gray4,
+              color: Color(0xFFDDDDDD),
               height: 1,
               width: double.infinity,
             ),
@@ -45,11 +47,25 @@ class _ConsentToProvisionInformationPageState
           checkBoxText(),
           Padding(
             padding: EdgeInsets.fromLTRB(0, 40, 0, 40),
-            child: RoundButton(
-                text: '플랜 시작하기',
-                disabled: isDisabled,
-                borderRadius: 14,
-                onClick: () {}, disabledClick: () {},
+            child: InkWell(
+              onTap: () {},
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Color(0xFFDDDDDD),
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                ),
+                padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+                child: Center(
+                  child: Text(
+                    '플랜 시작하기',
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white),
+                  ),
+                ),
+              ),
             ),
           ),
         ],
@@ -73,22 +89,17 @@ class _ConsentToProvisionInformationPageState
                 padding: const EdgeInsets.all(3.5),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: isDisabled == false
-                        ? MORAColor.primaryColor.shade500
-                        : MORAColor.white,
+                    color:
+                        isDisabled == false ? primaryColor : Color(0xFFFFFFFF),
                     border: isDisabled == false
-                        ? Border.all(
-                            color: MORAColor.primaryColor.shade500,
-                          )
+                        ? Border.all(color: primaryColor)
                         : Border.all(
-                            color:MORAColor.gray4,
+                            color: gray4,
                           ),
                   ),
                   child: Icon(
                     Icons.check,
-                    color: isDisabled ==false
-                        ? MORAColor.white
-                        : MORAColor.gray4,
+                    color: isDisabled == false ? Color(0xFFFFFFFF) : gray4,
                     size: 17,
                   ),
                 ),
@@ -98,10 +109,8 @@ class _ConsentToProvisionInformationPageState
               ),
               Text(
                 '위 내용에 동의합니다.',
-                style:moraText.fontSize16.copyWith(
-                        color: MORAColor.gray1,
-                        fontWeight: FontWeight.w700,
-                        height: 1.0),
+                style: TextStyle(
+                    color: gray1, fontWeight: FontWeight.w700, height: 1.0),
               ),
             ],
           )),

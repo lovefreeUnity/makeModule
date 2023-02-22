@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:grapth/information_provision/consent_to_provision_information_page.dart';
-import 'package:grapth/res/everex_theme.dart';
 
 void main() {
-  moraText.setTextStyle();
   runApp(MyApp());
 }
 

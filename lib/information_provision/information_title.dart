@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:grapth/res/everex_theme.dart';
 
 class InformationProvisionTitle extends StatelessWidget {
   InformationProvisionTitle(
@@ -10,10 +9,9 @@ class InformationProvisionTitle extends StatelessWidget {
       required this.doctorName,
       required this.therapistName});
 
-  TextStyle titleTextStyle =
-      moraText.fontSize24.copyWith(fontWeight: FontWeight.w700);
-  TextStyle gray1 = moraText.fontSize14.copyWith(color: MORAColor.gray1);
-  TextStyle gray3 = moraText.fontSize14.copyWith(color: MORAColor.gray3);
+  TextStyle titleTextStyle = TextStyle(fontSize: 24,fontWeight: FontWeight.w700,color: Color(0xFF000000),height: 1.5);
+  TextStyle gray1 = TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color:Color(0xFF545454),height: 1.5);
+  TextStyle gray3 =TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Color(0xFFAEAEAE),height: 1.5,);
 
   String userName;
   String hospitalName;
