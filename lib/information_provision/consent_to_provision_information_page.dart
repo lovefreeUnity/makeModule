@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grapth/information_provision/information_provision_body.dart';
 import 'package:grapth/information_provision/information_title.dart';
-import 'package:grapth/information_provision/round_button.dart';
 
 class ConsentToProvisionInformationPage extends StatefulWidget {
   const ConsentToProvisionInformationPage({Key? key}) : super(key: key);
