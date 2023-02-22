@@ -42,7 +42,7 @@ class InformationProvisionTitle extends StatelessWidget {
           style: titleTextStyle,
         ),
         Text(
-          '장해련님의 MORT-PFPS 프로그램',
+          'MORT-PFPS 프로그램',
           style: titleTextStyle,
         ),
         SizedBox(

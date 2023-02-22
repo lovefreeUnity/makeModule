@@ -30,7 +30,7 @@ class _ConsentToProvisionInformationPageState
                     height: 64,
                   ),
                   InformationProvisionTitle(
-                    userName: '홍길동',
+                    userName: '장해련',
                     hospitalName: '연세바른정형외과',
                     assignmentDate: '22.10.27 (28일)',
                     doctorName: '이현수',
