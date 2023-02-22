@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 
 class InformationProvisionTitle extends StatelessWidget {
-  InformationProvisionTitle(
-      {super.key,
-      required this.userName,
-      required this.hospitalName,
-      required this.assignmentDate,
-      required this.doctorName,
-      required this.therapistName});
+  InformationProvisionTitle({
+    super.key,
+    required this.userName,
+    required this.hospitalName,
+    required this.assignmentDate,
+    required this.doctorName,
+  });
 
-  TextStyle titleTextStyle = TextStyle(
+  TextStyle titleTextStyle = const TextStyle(
       fontSize: 24,
       fontWeight: FontWeight.w700,
       color: Color(0xFF000000),
       height: 1.5);
-  TextStyle gray1Color = TextStyle(
+  TextStyle gray1Color = const TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.w400,
       color: Color(0xFF545454),
       height: 1.5);
-  TextStyle gray3Color = TextStyle(
+  TextStyle gray3Color = const TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
     color: Color(0xFFAEAEAE),
@@ -29,7 +29,6 @@ class InformationProvisionTitle extends StatelessWidget {
   String userName;
   String hospitalName;
   String doctorName;
-  String therapistName;
   String assignmentDate;
 
   @override
@@ -45,6 +44,9 @@ class InformationProvisionTitle extends StatelessWidget {
         Text(
           '장해련님의 MORT-PFPS 프로그램',
           style: titleTextStyle,
+        ),
+        SizedBox(
+          height: 16,
         ),
         Text.rich(
           TextSpan(children: [
