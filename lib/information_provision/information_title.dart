@@ -9,9 +9,22 @@ class InformationProvisionTitle extends StatelessWidget {
       required this.doctorName,
       required this.therapistName});
 
-  TextStyle titleTextStyle = TextStyle(fontSize: 24,fontWeight: FontWeight.w700,color: Color(0xFF000000),height: 1.5);
-  TextStyle gray1Color = TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color:Color(0xFF545454),height: 1.5);
-  TextStyle gray3Color =TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Color(0xFFAEAEAE),height: 1.5,);
+  TextStyle titleTextStyle = TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w700,
+      color: Color(0xFF000000),
+      height: 1.5);
+  TextStyle gray1Color = TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: Color(0xFF545454),
+      height: 1.5);
+  TextStyle gray3Color = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: Color(0xFFAEAEAE),
+    height: 1.5,
+  );
 
   String userName;
   String hospitalName;
@@ -26,7 +39,11 @@ class InformationProvisionTitle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '$userName 님의 고관절 운동 플랜',
+          "$userName님의",
+          style: titleTextStyle,
+        ),
+        Text(
+          '장해련님의 MORT-PFPS 프로그램',
           style: titleTextStyle,
         ),
         Text.rich(
@@ -50,11 +67,9 @@ class InformationProvisionTitle extends StatelessWidget {
             TextSpan(text: assignmentDate, style: gray1Color)
           ]),
         ),
-
         SizedBox(
           height: 3,
         ),
-
         Text.rich(
           TextSpan(children: [
             TextSpan(
@@ -78,11 +93,9 @@ class InformationProvisionTitle extends StatelessWidget {
             TextSpan(text: therapistName, style: gray1Color)
           ]),
         ),
-
         SizedBox(
           height: 3,
         ),
-
         Text.rich(
           TextSpan(children: [
             TextSpan(
