@@ -81,16 +81,6 @@ class InformationProvisionTitle extends StatelessWidget {
               width: 8,
             )),
             TextSpan(text: doctorName, style: gray1Color),
-            WidgetSpan(
-                child: SizedBox(
-              width: 8,
-            )),
-            TextSpan(text: '담당치료사', style: gray3Color),
-            WidgetSpan(
-                child: SizedBox(
-              width: 8,
-            )),
-            TextSpan(text: therapistName, style: gray1Color)
           ]),
         ),
         SizedBox(
