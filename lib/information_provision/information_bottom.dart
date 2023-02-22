@@ -19,7 +19,7 @@ class InformationBottom extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 color: buttonColor,
-                borderRadius: BorderRadius.all(Radius.circular(8)),
+                borderRadius: BorderRadius.all(Radius.circular(14)),
               ),
               padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
               child: Center(
