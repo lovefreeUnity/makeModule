@@ -89,14 +89,14 @@ class InformationProvisionTitle extends StatelessWidget {
         Text.rich(
           TextSpan(children: [
             TextSpan(
-              text: '주의사항',
+              text: '기간',
               style: gray3Color,
             ),
             WidgetSpan(
                 child: SizedBox(
               width: 8,
             )),
-            TextSpan(text: '운동 전후 스트레칭을 해주세요.', style: gray1Color)
+            TextSpan(text: '시작일로부터 8주간', style: gray1Color)
           ]),
         )
       ],
