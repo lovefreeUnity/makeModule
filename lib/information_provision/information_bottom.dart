@@ -11,15 +11,14 @@ class InformationBottom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      initialData: false,
-      stream: roundButtonController.isRoundButtonEnable,
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+    return AnimatedBuilder(
+      animation: roundButtonController,
+      builder: (context,  child) {
         return Column(
           children: [
             GestureDetector(
               onTap: () {
-                snapshot.data
+                roundButtonController.isEnable
                     ? roundButtonController.unCheckEvent()
                     : roundButtonController.checkEvent();
               },
@@ -30,8 +29,8 @@ class InformationBottom extends StatelessWidget {
                     padding: const EdgeInsets.all(3.5),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: snapshot.data ? primaryColor : Color(0xFFFFFFFF),
-                        border: snapshot.data
+                        color: roundButtonController.isEnable ? primaryColor : Color(0xFFFFFFFF),
+                        border: roundButtonController.isEnable
                             ? Border.all(color: primaryColor)
                             : Border.all(
                                 color: gray4,
@@ -39,7 +38,7 @@ class InformationBottom extends StatelessWidget {
                       ),
                       child: Icon(
                         Icons.check,
-                        color: snapshot.data ? Color(0xFFFFFFFF) : gray4,
+                        color: roundButtonController.isEnable ? Color(0xFFFFFFFF) : gray4,
                         size: 17,
                       ),
                     ),
@@ -62,7 +61,7 @@ class InformationBottom extends StatelessWidget {
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: snapshot.data ? primaryColor : gray4,
+                    color: roundButtonController.isEnable ? primaryColor : gray4,
                     borderRadius: BorderRadius.all(Radius.circular(14)),
                   ),
                   padding: EdgeInsets.fromLTRB(0, 16, 0, 16),

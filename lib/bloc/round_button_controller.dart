@@ -2,13 +2,17 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 
 class RoundButtonController extends ChangeNotifier{
-  final StreamController<bool> _streamController = StreamController();
-  Stream<bool> get isRoundButtonEnable => _streamController.stream;
-
+  late bool _isEnable;
+  bool get isEnable => _isEnable;
+  RoundButtonController(){
+    _isEnable =  false;
+  }
   checkEvent(){
-    _streamController.sink.add(true);
+    _isEnable = true;
+    notifyListeners();
   }
   unCheckEvent(){
-    _streamController.sink.add(false);
+   _isEnable = false;
+   notifyListeners();
   }
 }
