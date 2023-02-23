@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
                 borderSide: BorderSide(color: Color(0xFFE74C3C))),
           ),
       ),
-      initialRoute: '/TextFieldPage',
+      initialRoute: '/PhoneNumberPage',
       routes: {
         '/PhoneNumberPage' : (context) => PhoneNumberPage(),
         '/AuthenticationNumber' : (context) => AuthenticationNumber(),
