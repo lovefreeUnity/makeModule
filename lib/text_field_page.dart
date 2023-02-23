@@ -180,22 +180,27 @@ class TextFieldPage extends StatelessWidget {
           ),
         ),
       ),
-      bottomSheet: Container(
-        padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
-        color: Color(0xFFDDDDDD),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "다음",
-              style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                  color: Color(0xFFFFFFFF),
-                  height: 1.5),
-            ),
-          ],
-        )
+      bottomSheet: InkWell(
+        onTap: (){
+          Navigator.pushNamed(context , '/TextFieldPage/TermsOfServicePage');
+        },
+        child: Container(
+            padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+            color: Color(0xFFDDDDDD),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "다음",
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFFFFFFFF),
+                      height: 1.5),
+                ),
+              ],
+            )
+        ),
       ),
     );
   }

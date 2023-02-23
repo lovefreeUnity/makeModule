@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grapth/terms_of_service_page.dart';
 import 'package:grapth/text_field_page.dart';
 
 void main() {
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return  MaterialApp(
       theme: ThemeData(
         fontFamily: 'Pretendard',
           inputDecorationTheme: const InputDecorationTheme(
@@ -42,7 +43,11 @@ class MyApp extends StatelessWidget {
                 borderSide: BorderSide(color: Color(0xFFE74C3C))),
           ),
       ),
-      home: TextFieldPage(),
+      initialRoute: '/TextFieldPage',
+      routes: {
+        '/TextFieldPage' : (context) => TextFieldPage(),
+        '/TextFieldPage/TermsOfServicePage' : (context) => TermsOfService()
+      },
     );
   }
 }
