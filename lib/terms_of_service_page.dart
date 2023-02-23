@@ -46,7 +46,7 @@ class _TermsOfServiceState extends State<TermsOfService> {
                 SizedBox(
                   height: 24,
                 ),
-                personalInformationCheckBox(),
+                privacyPolicyCheckBox(),
                 const SizedBox(
                   height: 22,
                 ),
@@ -108,7 +108,7 @@ class _TermsOfServiceState extends State<TermsOfService> {
             children: [
               Icon(
                 Icons.check,
-                color: termsOfServiceNotifier.termsOfServiceAgreement ? Color(0xFF07BEB8) : Color(0xFFDDDDDD),
+                color: termsOfServiceNotifier.agreeToTermsOfService ? Color(0xFF07BEB8) : Color(0xFFDDDDDD),
               ),
               Text.rich(
                 TextSpan(text: '서비스 이용약관', children: [
@@ -151,18 +151,18 @@ class _TermsOfServiceState extends State<TermsOfService> {
       ],
     );
   }
-  Widget personalInformationCheckBox(){
+  Widget privacyPolicyCheckBox(){
     return Column(
       children: [
         InkWell(
           onTap: () {
-            termsOfServiceNotifier.personalInformationCheckBoxEvent();
+            termsOfServiceNotifier.privacyPolicyCheckBoxEvent();
           },
           child: Row(
             children: [
               Icon(
                 Icons.check,
-                color: termsOfServiceNotifier.personalInformationAgreement ? Color(0xFF07BEB8) : Color(0xFFDDDDDD),
+                color: termsOfServiceNotifier.agreeToPrivacyPolicy ? Color(0xFF07BEB8) : Color(0xFFDDDDDD),
               ),
               Text.rich(
                 TextSpan(text: '개인정보 수집·이용 동의', children: [

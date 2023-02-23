@@ -2,51 +2,51 @@ import 'package:flutter/cupertino.dart';
 
 class TermsOfServiceNotifier with ChangeNotifier{
   late bool _allAgreement;
-  late bool _personalInformationAgreement;
-  late bool _termsOfServiceAgreement;
+  late bool _agreeToPersonalInformation;
+  late bool _agreeToTermsOfService;
 
   bool get allAgreement => _allAgreement;
-  bool get personalInformationAgreement => _personalInformationAgreement;
-  bool get termsOfServiceAgreement => _termsOfServiceAgreement;
+  bool get agreeToPrivacyPolicy => _agreeToPersonalInformation;
+  bool get agreeToTermsOfService => _agreeToTermsOfService;
 
   TermsOfServiceNotifier(){
     _allAgreement = false;
-    _termsOfServiceAgreement = false;
-    _personalInformationAgreement = false;
+    _agreeToTermsOfService = false;
+    _agreeToPersonalInformation = false;
   }
 
   allCheckBoxEvent(){
     if(_allAgreement){
       _allAgreement = false;
-      _personalInformationAgreement = false;
-      _termsOfServiceAgreement = false;
+      _agreeToPersonalInformation = false;
+      _agreeToTermsOfService = false;
     }else{
       _allAgreement = true;
-      _personalInformationAgreement = true;
-      _termsOfServiceAgreement = true;
+      _agreeToPersonalInformation = true;
+      _agreeToTermsOfService = true;
     }
     notifyListeners();
   }
 
-  personalInformationCheckBoxEvent(){
-    if(_personalInformationAgreement){
+  privacyPolicyCheckBoxEvent(){
+    if(_agreeToPersonalInformation){
       _allAgreement = false;
-      _personalInformationAgreement = false;
+      _agreeToPersonalInformation = false;
     }else{
-      _personalInformationAgreement = true;
-      if(_termsOfServiceAgreement){
+      _agreeToPersonalInformation = true;
+      if(_agreeToTermsOfService){
         _allAgreement = true;
       }
     }
     notifyListeners();
   }
   termsOfServiceCheckBoxEvent(){
-    if(_termsOfServiceAgreement){
+    if(_agreeToTermsOfService){
       _allAgreement = false;
-      _termsOfServiceAgreement = false;
+      _agreeToTermsOfService = false;
     }else{
-      _termsOfServiceAgreement = true;
-      if(_personalInformationAgreement){
+      _agreeToTermsOfService = true;
+      if(_agreeToPersonalInformation){
         _allAgreement = true;
       }
     }
