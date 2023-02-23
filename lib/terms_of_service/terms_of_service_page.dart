@@ -16,14 +16,14 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+      body: Container(
+        color: Colors.white,
+        padding: const EdgeInsets.fromLTRB(16, 64, 16, 0),
         child: AnimatedBuilder(
           animation: termsOfServiceNotifier,
           builder: (BuildContext context, Widget? child) {
             return Column(
               children: [
-                SizedBox(height: 64), //appbar 높이
                 Text(
                   '서비스 이용약관에 동의해주세요',
                   style: TextStyle(
