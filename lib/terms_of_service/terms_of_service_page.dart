@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:grapth/terms_of_service_notifier.dart';
+import 'terms_of_service_notifier.dart';
 
-class TermsOfService extends StatefulWidget {
-  const TermsOfService({Key? key}) : super(key: key);
+
+class TermsOfServicePage extends StatefulWidget {
+  const TermsOfServicePage({Key? key}) : super(key: key);
 
   @override
-  State<TermsOfService> createState() => _TermsOfServiceState();
+  State<TermsOfServicePage> createState() => _TermsOfServicePageState();
 }
 
-class _TermsOfServiceState extends State<TermsOfService> {
+class _TermsOfServicePageState extends State<TermsOfServicePage> {
 
   TermsOfServiceNotifier termsOfServiceNotifier = TermsOfServiceNotifier();
 

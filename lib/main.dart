@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:grapth/terms_of_service_page.dart';
-import 'package:grapth/text_field_page.dart';
+import 'package:grapth/pages/authentication_number.dart';
+import 'package:grapth/pages/phone_number_page.dart';
+import 'package:grapth/terms_of_service/terms_of_service_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -45,8 +46,9 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/TextFieldPage',
       routes: {
-        '/TextFieldPage' : (context) => TextFieldPage(),
-        '/TextFieldPage/TermsOfServicePage' : (context) => TermsOfService()
+        '/PhoneNumberPage' : (context) => PhoneNumberPage(),
+        '/AuthenticationNumber' : (context) => AuthenticationNumber(),
+        '/TermsOfServicePage' : (context) => TermsOfServicePage()
       },
     );
   }
