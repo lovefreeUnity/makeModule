@@ -56,7 +56,8 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
       ),
       bottomSheet: InkWell(
         onTap: (){
-          Navigator.pushNamed(context , '/TermsOfServicePage');
+          // Navigator.pushNamed(context , '/TermsOfServicePage');
+          Navigator.pushNamed(context , '/AlreadySignedUpAccountPage');
         },
         child: Container(
             padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
