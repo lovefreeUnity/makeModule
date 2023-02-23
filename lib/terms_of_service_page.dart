@@ -86,16 +86,23 @@ class _TermsOfServiceState extends State<TermsOfService> {
                   height: 22,
                 ),
 
-                Container(
-                  padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
-                  decoration: BoxDecoration(
-                      color: termsOfServiceNotifier.allAgreement ?Color(0xFf07BEB8) : Color(0xFFDDDDDD) ,
-                      borderRadius: BorderRadius.circular(14)),
-                  child: const Center(
-                    child: Text(
-                      '동의하고 시작',
-                      style:
-                      TextStyle(color: Colors.white,fontWeight: FontWeight.w700 ,fontSize: 18, height: 1.5),
+                InkWell(
+                  onTap: (){
+                    if(termsOfServiceNotifier.allAgreement){
+                      //버튼 클릭 이벤트 추가 해야 됩니다.
+                    }
+                  },
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+                    decoration: BoxDecoration(
+                        color: termsOfServiceNotifier.allAgreement ?Color(0xFf07BEB8) : Color(0xFFDDDDDD) ,
+                        borderRadius: BorderRadius.circular(14)),
+                    child: const Center(
+                      child: Text(
+                        '동의하고 시작',
+                        style:
+                        TextStyle(color: Colors.white,fontWeight: FontWeight.w700 ,fontSize: 18, height: 1.5),
+                      ),
                     ),
                   ),
                 ),
