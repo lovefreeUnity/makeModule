@@ -44,10 +44,8 @@ class _ConsentToProvisionInformationPageState
                       width: double.infinity,
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 32),
-                    child: InformationProvisionBody(),
-                  ),
+                  InformationProvisionBody(),
+                  SizedBox(height: 32,),
                   InformationBottom()
                 ],
               ),

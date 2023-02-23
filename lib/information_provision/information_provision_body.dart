@@ -5,6 +5,7 @@ class InformationProvisionBody extends StatelessWidget {
   Color primaryColor = Color(0xFF07BEB8);
   Color gray4 = Color(0xFFDDDDDD);
   Color gray1 = Color(0xFF545454);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -38,11 +39,13 @@ class InformationProvisionBody extends StatelessWidget {
               titleStyle: TextStyle(
                   fontSize: 16,
                   color: Colors.black,
-                  fontWeight: FontWeight.w500),
+                  fontWeight: FontWeight.w500,
+                  height: 1.5),
               textStyle: TextStyle(
                   fontSize: 14,
                   color: Color(0xFF545454),
-                  fontWeight: FontWeight.w400)),
+                  fontWeight: FontWeight.w400,
+                  height: 1.5)),
         ),
       ],
     );
@@ -56,16 +59,22 @@ class InformationProvisionBody extends StatelessWidget {
         Text(
           title,
           style: titleStyle ??
-              TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color : primaryColor ),
+              TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: primaryColor,
+                  height: 1.5),
         ),
         SizedBox(
           height: 8,
         ),
-        Text(
-          text,
-          style: textStyle ?? TextStyle(
-          color: Color(0xFF000000), fontWeight: FontWeight.w400,fontSize: 16)
-          )
+        Text(text,
+            style: textStyle ??
+                TextStyle(
+                    color: Color(0xFF000000),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                    height: 1.5))
       ],
     );
   }
