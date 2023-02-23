@@ -14,57 +14,6 @@ class TextFieldPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
-                height: 108,
-              ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  //휴대폰 번호 텍스트 필드
-                  Text(
-                    '휴대폰 번호',
-                    style: TextStyle(
-                        color: Color(0xFF000000),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'Pretendard',
-                        height: 1.5),
-                  ),
-                  TextField(
-                    keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(
-                        hintText: '-없이 숫자만 입력',
-                        suffixIcon: Icon(Icons.abc_rounded),
-                        suffixIconColor: Color(0xFFDDDDDD)),
-                  )
-                ],
-              ),
-              SizedBox(height: 20),
-              //인증 번호 텍스트 필드
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TextField(
-                    keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(
-                      hintText: '인증번호를 입력해주세요.',
-                      suffixIcon: Icon(Icons.abc_rounded),
-                      suffixIconColor: Color(0xFFDDDDDD),
-                    ),
-                  ),
-                  //에러 텍스트
-                  Text(
-                    '인증번호를 다시 확인해주세요.',
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Color(0xFfE74C3C),
-                        fontWeight: FontWeight.w400,
-                        height: 1.5),
-                  )
-                ],
-              ),
               SizedBox(height: 20),
 
               //이름 입력란
