@@ -19,12 +19,13 @@ class MyApp extends StatelessWidget {
           inputDecorationTheme: const InputDecorationTheme(
             filled: true,
             fillColor: Color(0xFFFFFFFF),
+            errorStyle: TextStyle(fontSize: 0,height: 0),
             hintStyle: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
                 height: 1.5,
                 color: Color(0xFFAEAEAE)),
-            contentPadding: EdgeInsets.fromLTRB(16, 12, 16, 12),
+            contentPadding: EdgeInsets.fromLTRB(16, 0, 16, 0),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(8)),
               borderSide: BorderSide(
