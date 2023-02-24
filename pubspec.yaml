@@ -29,10 +29,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  fl_chart:
-    git:
-      url: https://github.com/lovefreeUnity/fl_chart.git
-      ref: master
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -59,33 +55,28 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  fonts:
+    - family: Pretendard
+      fonts:
+        - asset: Fonts/Pretendard-Thin.otf
+          weight: 100
+        - asset: Fonts/Pretendard-ExtraLight.otf
+          weight: 200
+        - asset: Fonts/Pretendard-Light.otf
+          weight: 300
+        - asset: Fonts/Pretendard-Regular.otf
+          weight: 400
+        - asset: Fonts/Pretendard-Medium.otf
+          weight: 500
+        - asset: Fonts/Pretendard-SemiBold.otf
+          weight: 600
+        - asset: Fonts/Pretendard-Bold.otf
+          weight: 700
+        - asset: Fonts/Pretendard-ExtraBold.otf
+          weight: 800
+        - asset: Fonts/Pretendard-Black.otf
+          weight: 900
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+    - family: TINAIcon
+      fonts:
+        - asset: Fonts/TINAIcon.ttf
