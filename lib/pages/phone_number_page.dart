@@ -26,6 +26,7 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 64,),
             Text(
               '반가워요!\n'
               '휴대폰 번호를 입력해주세요',
@@ -88,14 +89,14 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                   color: Color(0xFfE74C3C),
                   fontWeight: FontWeight.w400,
                   height: 1.5),
-            )
+            ),
           ],
         ),
       ),
       bottomSheet: InkWell(
         onTap: () {
           if (textEditingController.text.length == maxTextLength) {
-            if (validate(textEditingController.text)!.isNotEmpty) {
+            if (validate(textEditingController.text) != null) {
               errorText = validate(textEditingController.text)!;
               setState(() {});
             } else {
@@ -103,7 +104,6 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
             }
           }
         },
-        //git commit -m '전화번호 입력 페이지에 레드의 validator_builder 적용 완료'
         child: Container(
             padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
             color: textEditingController.text.length == maxTextLength
