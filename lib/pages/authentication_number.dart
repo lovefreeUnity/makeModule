@@ -8,6 +8,9 @@ class AuthenticationNumber extends StatefulWidget {
 }
 
 class _AuthenticationNumberState extends State<AuthenticationNumber> {
+
+  TextEditingController textEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,10 +35,11 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
             ),
             SizedBox(height: 40,),
             TextField(
+              controller: textEditingController,
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
                 hintText: '인증번호를 입력해주세요.',
-                suffixIcon: Icon(Icons.abc_rounded),
+                suffixIcon: textEditingController.text.isEmpty ?null:Icon(Icons.abc_rounded),
                 suffixIconColor: Color(0xFFDDDDDD),
               ),
               onTapOutside: (pointerDownEvent){
@@ -56,8 +60,8 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
       ),
       bottomSheet: InkWell(
         onTap: (){
-          // Navigator.pushNamed(context , '/TermsOfServicePage');
-          Navigator.pushNamed(context , '/AlreadySignedUpAccountPage');
+          Navigator.pushNamed(context , '/TermsOfServicePage');
+          // Navigator.pushNamed(context , '/AlreadySignedUpAccountPage');
         },
         child: Container(
             padding: EdgeInsets.fromLTRB(0, 16, 0, 16),

@@ -10,7 +10,8 @@ class PhoneNumberPage extends StatefulWidget {
 
 class _PhoneNumberPageState extends State<PhoneNumberPage> {
 
-  final validate = ValidationBuilder().minLength(3).maxLength(10).build();
+  final validate = ValidationBuilder().phone().build();
+  TextEditingController textEditingController = TextEditingController();
   
   @override
   Widget build(BuildContext context) {
@@ -37,13 +38,17 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
             ),
             // TextFormField(),
             TextField(
+              controller: textEditingController,
               keyboardType: TextInputType.phone,
+              onChanged: (text){setState(() {
+
+              });},
               decoration: InputDecoration(
                   hintText: '-없이 숫자만 입력',
-                  suffixIcon: Icon(Icons.abc_rounded),
-                  suffixIconColor: Color(0xFFDDDDDD)),
-              onChanged: (text){
-              },
+                  suffixIcon: textEditingController.text.isEmpty ?null: InkWell(onTap: (){
+                    textEditingController.clear();
+                  }, child: Icon(Icons.abc_rounded)),
+                  suffixIconColor:Color(0xFFDDDDDD)),
               onTapOutside: (pointerDownEvent){
                 FocusScope.of(context).unfocus();
               },
@@ -53,13 +58,11 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
       ),
       bottomSheet: InkWell(
         onTap: (){
-          print("kk");
-          print(validate('test'));
-          // Navigator.pushNamed(context , '/AuthenticationNumber');
+          Navigator.pushNamed(context , '/AuthenticationNumber');
         },
         child: Container(
             padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
-            color: Color(0xFFDDDDDD),
+            color: false ? Color(0xFF07BEB8) :Color(0xFFDDDDDD),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
