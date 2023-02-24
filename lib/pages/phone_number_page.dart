@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grapth/validator_builder.dart';
 
 class PhoneNumberPage extends StatefulWidget {
   const PhoneNumberPage({Key? key}) : super(key: key);
@@ -8,6 +9,9 @@ class PhoneNumberPage extends StatefulWidget {
 }
 
 class _PhoneNumberPageState extends State<PhoneNumberPage> {
+
+  final validate = ValidationBuilder().minLength(3).maxLength(10).build();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,12 +35,15 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                   fontFamily: 'Pretendard',
                   height: 1.5),
             ),
+            // TextFormField(),
             TextField(
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
                   hintText: '-없이 숫자만 입력',
                   suffixIcon: Icon(Icons.abc_rounded),
                   suffixIconColor: Color(0xFFDDDDDD)),
+              onChanged: (text){
+              },
               onTapOutside: (pointerDownEvent){
                 FocusScope.of(context).unfocus();
               },
@@ -46,7 +53,9 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
       ),
       bottomSheet: InkWell(
         onTap: (){
-          Navigator.pushNamed(context , '/AuthenticationNumber');
+          print("kk");
+          print(validate('test'));
+          // Navigator.pushNamed(context , '/AuthenticationNumber');
         },
         child: Container(
             padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
