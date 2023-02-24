@@ -8,7 +8,6 @@ class AuthenticationNumber extends StatefulWidget {
 }
 
 class _AuthenticationNumberState extends State<AuthenticationNumber> {
-
   TextEditingController textEditingController = TextEditingController();
 
   @override
@@ -23,26 +22,60 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
             SizedBox(
               height: 64,
             ),
-            Text('010-1234-5678로\n'
-            '인증번호를 보내드렸어요',style: TextStyle(color: Color(0xFF000000),fontSize: 26,fontWeight: FontWeight.w700,height: 1.5),),
-            SizedBox(height: 4,),
+            Text(
+              '010-1234-5678로\n'
+              '인증번호를 보내드렸어요',
+              style: TextStyle(
+                  color: Color(0xFF000000),
+                  fontSize: 26,
+                  fontWeight: FontWeight.w700,
+                  height: 1.5),
+            ),
+            SizedBox(
+              height: 4,
+            ),
             Row(
               children: [
-                Text('문자를 받지 못 하셨나요?',style: TextStyle(color: Color(0xFF747474),fontSize: 16,fontWeight: FontWeight.w400,height: 1.5)),
-                SizedBox(width: 16,),
-                Text('60초 후 다시 받기',style: TextStyle(color: Color(0xFF6AD8D4),fontSize: 16,fontWeight: FontWeight.w400,height: 1.5),)
+                Text('문자를 받지 못 하셨나요?',
+                    style: TextStyle(
+                        color: Color(0xFF747474),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        height: 1.5)),
+                SizedBox(
+                  width: 16,
+                ),
+                Text.rich(
+                  TextSpan(
+                    text: '60초 후 ',
+                    children: [
+                      TextSpan(
+                        text:'다시 받기'
+                      )
+                    ]
+                  ),
+                  style: TextStyle(
+                      color: Color(0xFF6AD8D4),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      height: 1.5),
+                )
               ],
             ),
-            SizedBox(height: 40,),
+            SizedBox(
+              height: 40,
+            ),
             TextField(
               controller: textEditingController,
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
                 hintText: '인증번호를 입력해주세요.',
-                suffixIcon: textEditingController.text.isEmpty ?null:Icon(Icons.abc_rounded),
+                suffixIcon: textEditingController.text.isEmpty
+                    ? null
+                    : Icon(Icons.abc_rounded),
                 suffixIconColor: Color(0xFFDDDDDD),
               ),
-              onTapOutside: (pointerDownEvent){
+              onTapOutside: (pointerDownEvent) {
                 FocusScope.of(context).unfocus();
               },
             ),
@@ -59,8 +92,8 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
         ),
       ),
       bottomSheet: InkWell(
-        onTap: (){
-          Navigator.pushNamed(context , '/TermsOfServicePage');
+        onTap: () {
+          Navigator.pushNamed(context, '/TermsOfServicePage');
           // Navigator.pushNamed(context , '/AlreadySignedUpAccountPage');
         },
         child: Container(
@@ -78,8 +111,7 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
                       height: 1.5),
                 ),
               ],
-            )
-        ),
+            )),
       ),
     );
   }
