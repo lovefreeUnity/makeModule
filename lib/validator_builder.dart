@@ -48,7 +48,7 @@ class ValidationBuilder {
   static final RegExp _nonDigitsExp = RegExp(r'[^\d]');
   static final RegExp _digitsExp = RegExp(r'^[0-9]');
   static final RegExp _anyLetter = RegExp(r'[A-Za-z]');
-  static final RegExp _phoneRegExp = RegExp(r'^[0-9]{11}$');
+  static final RegExp _phoneRegExp = RegExp(r'^010[0-9]{8}$');
   static final RegExp _resNumRegExp = RegExp(r'^[0-9]{13}$');
 
   static final RegExp _ipv4RegExp = RegExp(
