@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class AuthenticationNumber extends StatefulWidget {
@@ -9,6 +11,8 @@ class AuthenticationNumber extends StatefulWidget {
 
 class _AuthenticationNumberState extends State<AuthenticationNumber> {
   TextEditingController textEditingController = TextEditingController();
+  AuthenticationNumberRestController authenticationNumberRestController =
+      AuthenticationNumberRestController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,20 +49,30 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
                 SizedBox(
                   width: 16,
                 ),
-                Text.rich(
-                  TextSpan(
-                    text: '60초 후 ',
-                    children: [
-                      TextSpan(
-                        text:'다시 받기'
-                      )
-                    ]
-                  ),
-                  style: TextStyle(
-                      color: Color(0xFF6AD8D4),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      height: 1.5),
+                AnimatedBuilder(
+                  animation: authenticationNumberRestController,
+                  builder: (BuildContext context, Widget? child) {
+                    return InkWell(
+                      onTap: () {
+                        if(authenticationNumberRestController._isEnable == false){
+                          //인증 번호 다시 보내기 클릭 이벤트
+                          authenticationNumberRestController.onClick();
+                        }
+                      },
+                      child: Text.rich(
+                        TextSpan(
+                            text: authenticationNumberRestController.isEnable
+                                ? '${authenticationNumberRestController.countTime}초 후 '
+                                : '',
+                            children: [TextSpan(text: '다시 받기')]),
+                        style: TextStyle(
+                            color: Color(0xFF6AD8D4),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            height: 1.5),
+                      ),
+                    );
+                  },
                 )
               ],
             ),
@@ -114,5 +128,39 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
             )),
       ),
     );
+  }
+}
+
+class AuthenticationNumberRestController with ChangeNotifier {
+  late int _countTime;
+
+  String get countTime => _countTime.toString();
+
+  late bool _isEnable;
+
+  bool get isEnable => _isEnable;
+
+  AuthenticationNumberRestController() {
+    _countTime = 60;
+    _isEnable = false;
+  }
+
+  Future<int> _count() async {
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      _countTime -= 1;
+      if (_countTime == 0) {
+        timer.cancel();
+        _isEnable = false;
+        _countTime = 60;
+      }
+      notifyListeners();
+    });
+    return 0;
+  }
+
+  Future<void> onClick() async {
+    _isEnable = true;
+    notifyListeners();
+    _count();
   }
 }
