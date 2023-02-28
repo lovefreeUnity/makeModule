@@ -2,8 +2,14 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class TextFieldPage extends StatelessWidget {
-  TextFieldPage({super.key});
+class TextFieldPage extends StatefulWidget {
+  const TextFieldPage({Key? key}) : super(key: key);
+
+  @override
+  State<TextFieldPage> createState() => _TextFieldPageState();
+}
+
+class _TextFieldPageState extends State<TextFieldPage> {
 
   TextEditingController nameTextController = TextEditingController();
   TextEditingController passwordTextController = TextEditingController();
@@ -38,8 +44,6 @@ class TextFieldPage extends StatelessWidget {
                   ),
                 ],
               ),
-
-
               SizedBox(height: 20),
 
               //주민등록번호
