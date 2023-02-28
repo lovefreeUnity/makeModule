@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:grapth/validator_builder.dart';
 
 class AuthenticationNumber extends StatefulWidget {
@@ -17,7 +18,7 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
   bool showIcon = false;
   //인증번호
   String authenticationNumber = '12345';
-  bool bottomSheetDisable = false;
+  final validationBuilder = ValidationBuilder().minLength(5).maxLength(5).build();//최소, 최대 길이 등은 나중에 기획이 더 나와야 한다.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,12 +89,15 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
               controller: textEditingController,
               keyboardType: TextInputType.phone,
               onChanged: (text) {
+                print(validationBuilder(textEditingController.text));
                 textEditingController.text.isEmpty
                     ? showIcon = false
                     : showIcon = true;
-                bottomSheetDisable = textEditingController.text != authenticationNumber;
                 setState(() {});
               },
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly
+              ],
               decoration: InputDecoration(
                 hintText: '인증번호를 입력해주세요.',
                 suffixIcon: showIcon
@@ -134,7 +138,7 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
         },
         child: Container(
             padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
-            color: bottomSheetDisable ? Color(0xFFDDDDDD) : Color(0xFF6AD8D4),
+            color: validationBuilder(textEditingController.text) != null ? Color(0xFFDDDDDD) : Color(0xFF6AD8D4),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
