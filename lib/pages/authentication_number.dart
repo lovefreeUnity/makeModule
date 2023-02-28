@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:grapth/validator_builder.dart';
 
 class AuthenticationNumber extends StatefulWidget {
   const AuthenticationNumber({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
   bool showIcon = false;
   //인증번호
   String authenticationNumber = '12345';
-  bool disable = false;
+  bool bottomSheetDisable = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,7 +91,7 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
                 textEditingController.text.isEmpty
                     ? showIcon = false
                     : showIcon = true;
-                disable = textEditingController.text != authenticationNumber;
+                bottomSheetDisable = textEditingController.text != authenticationNumber;
                 setState(() {});
               },
               decoration: InputDecoration(
@@ -133,7 +134,7 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
         },
         child: Container(
             padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
-            color: disable ? Color(0xFFDDDDDD) : Color(0xFF6AD8D4),
+            color: bottomSheetDisable ? Color(0xFFDDDDDD) : Color(0xFF6AD8D4),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
