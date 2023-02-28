@@ -82,10 +82,6 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                             child: Icon(Icons.abc_rounded))
                             : null,
                         suffixIconColor: Color(0xFFDDDDDD)),
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(maxTextLength)
-                    ],
                     onTapOutside: (pointerDownEvent) {
                       // FocusScope.of(context).unfocus();
                     },

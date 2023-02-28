@@ -87,15 +87,11 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
               controller: textEditingController,
               keyboardType: TextInputType.phone,
               onChanged: (text) {
-                print(validationBuilder(textEditingController.text));
                 textEditingController.text.isEmpty
                     ? showIcon = false
                     : showIcon = true;
                 setState(() {});
               },
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly
-              ],
               decoration: InputDecoration(
                 hintText: '인증번호를 입력해주세요.',
                 suffixIcon: showIcon
