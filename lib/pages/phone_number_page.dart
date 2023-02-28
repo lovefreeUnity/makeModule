@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:grapth/validator_builder.dart';
 
 class PhoneNumberPage extends StatefulWidget {
   const PhoneNumberPage({Key? key}) : super(key: key);
@@ -10,7 +9,6 @@ class PhoneNumberPage extends StatefulWidget {
 }
 
 class _PhoneNumberPageState extends State<PhoneNumberPage> {
-  final validate = ValidationBuilder().phone().build();
   TextEditingController textEditingController = TextEditingController();
 
   String errorText = '';
@@ -102,13 +100,8 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
         bottomSheet: InkWell(
           onTap: () {
             if (textEditingController.text.length == maxTextLength) {
-              if (validate(textEditingController.text) != null) {
-                errorText = validate(textEditingController.text)!;
-                setState(() {});
-              } else {
                 Navigator.pushNamed(context, '/AuthenticationNumber');
               }
-            }
           },
           child: Container(
             padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
