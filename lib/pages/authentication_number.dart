@@ -14,6 +14,8 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
   AuthenticationNumberRestController authenticationNumberRestController =
       AuthenticationNumberRestController();
   bool showIcon = false;
+  //인증번호
+  int authenticationNumber = 12345;
 
   @override
   Widget build(BuildContext context) {
