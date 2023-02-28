@@ -23,6 +23,7 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
           animation: termsOfServiceNotifier,
           builder: (BuildContext context, Widget? child) {
             return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
                   '서비스 이용약관에 동의해주세요',
@@ -137,6 +138,7 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
             ],
           ),
         ),
+        SizedBox(height: 8,),
         Container(
           padding: EdgeInsets.fromLTRB(16, 16, 16, 16),
           decoration: BoxDecoration(
@@ -221,7 +223,7 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
             borderRadius: BorderRadius.circular(14)),
         child: const Center(
           child: Text(
-            '동의하고 시작',
+            '동의하고 시작하기',
             style:
             TextStyle(color: Colors.white,fontWeight: FontWeight.w700 ,fontSize: 18, height: 1.5),
           ),
