@@ -241,7 +241,7 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
       onTap: () {
         if (termsOfServiceNotifier.allAgreement) {
           //버튼 클릭 이벤트 추가 해야 됩니다.
-          Navigator.pushNamed(context, '/TextFieldPage');
+          Navigator.pushNamed(context, '/SignInTextFieldsPage');
         }
       },
       child: Container(

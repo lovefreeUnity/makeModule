@@ -1,16 +1,14 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class TextFieldPage extends StatefulWidget {
-  const TextFieldPage({Key? key}) : super(key: key);
+class SignInTextFieldsPage extends StatefulWidget {
+  const SignInTextFieldsPage({Key? key}) : super(key: key);
 
   @override
-  State<TextFieldPage> createState() => _TextFieldPageState();
+  State<SignInTextFieldsPage> createState() => _SignInTextFieldsPageState();
 }
 
-class _TextFieldPageState extends State<TextFieldPage> {
+class _SignInTextFieldsPageState extends State<SignInTextFieldsPage> {
   //아이콘on off 및 텍스트 받아오기 위한 텍스트 컨트롤러
   TextEditingController nameTextController = TextEditingController();
   TextEditingController passwordTextController = TextEditingController();
