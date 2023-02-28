@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'terms_of_service_notifier.dart';
 
-
 class TermsOfServicePage extends StatefulWidget {
   const TermsOfServicePage({Key? key}) : super(key: key);
 
@@ -10,7 +9,6 @@ class TermsOfServicePage extends StatefulWidget {
 }
 
 class _TermsOfServicePageState extends State<TermsOfServicePage> {
-
   TermsOfServiceNotifier termsOfServiceNotifier = TermsOfServiceNotifier();
 
   @override
@@ -64,7 +62,7 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
     );
   }
 
-  Widget allCheckBox(){
+  Widget allCheckBox() {
     return InkWell(
       onTap: () {
         termsOfServiceNotifier.allCheckBoxEvent();
@@ -73,17 +71,23 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: termsOfServiceNotifier.allAgreement ? Color(0xFF07BEB8) : Colors.white,
+              color: termsOfServiceNotifier.allAgreement
+                  ? Color(0xFF07BEB8)
+                  : Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(99)),
               border: Border.all(
                 width: 1,
-                color: termsOfServiceNotifier.allAgreement ? Colors.white : Color(0xFFDDDDDD),
+                color: termsOfServiceNotifier.allAgreement
+                    ? Colors.white
+                    : Color(0xFFDDDDDD),
               ),
             ),
             child: Icon(
               Icons.check,
               size: 19,
-              color: termsOfServiceNotifier.allAgreement ? Colors.white : Color(0xFFDDDDDD),
+              color: termsOfServiceNotifier.allAgreement
+                  ? Colors.white
+                  : Color(0xFFDDDDDD),
             ),
           ),
           SizedBox(width: 6.5),
@@ -99,7 +103,8 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
       ),
     );
   }
-  Widget termsOfServiceCheckBox(){
+
+  Widget termsOfServiceCheckBox() {
     return Column(
       children: [
         InkWell(
@@ -110,14 +115,16 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
             children: [
               Icon(
                 Icons.check,
-                color: termsOfServiceNotifier.agreeToTermsOfService ? Color(0xFF07BEB8) : Color(0xFFDDDDDD),
+                color: termsOfServiceNotifier.agreeToTermsOfService
+                    ? Color(0xFF07BEB8)
+                    : Color(0xFFDDDDDD),
               ),
               Text.rich(
                 TextSpan(text: '서비스 이용약관', children: [
                   WidgetSpan(
                       child: SizedBox(
-                        width: 4,
-                      )),
+                    width: 4,
+                  )),
                   TextSpan(
                     text: '(필수)',
                     style: TextStyle(
@@ -138,7 +145,9 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
             ],
           ),
         ),
-        SizedBox(height: 8,),
+        SizedBox(
+          height: 8,
+        ),
         Container(
           padding: EdgeInsets.fromLTRB(16, 16, 16, 16),
           decoration: BoxDecoration(
@@ -148,13 +157,20 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
           width: double.infinity,
           child: SingleChildScrollView(
             child: Text(
-                '본 이용약관(이하 “이용약관"은 네이버 제트 주식회사 ZEPETO 앱 및 관련하여 제공하는 프로그램, 소프트웨어 등(이하 서비스" 또는 “ZEPETO” 및 본 이용약관의 적용을 받으며 ZEPETO 앱에서 업로드 및 다운로드, 공유되는 모든 정보 및 텍스트, 그래픽, 사진, 기타 자료(이하 통칭 “콘텐츠")에 대한 접근 및 이용에 관한 사항을 규정합니다. 본 이용약관에 동의하지 않는 경우 ZEPETO를 이용할 수 없습니다.'),
+              '본 이용약관(이하 “이용약관"은 네이버 제트 주식회사 ZEPETO 앱 및 관련하여 제공하는 프로그램, 소프트웨어 등(이하 서비스" 또는 “ZEPETO” 및 본 이용약관의 적용을 받으며 ZEPETO 앱에서 업로드 및 다운로드, 공유되는 모든 정보 및 텍스트, 그래픽, 사진, 기타 자료(이하 통칭 “콘텐츠")에 대한 접근 및 이용에 관한 사항을 규정합니다. 본 이용약관에 동의하지 않는 경우 ZEPETO를 이용할 수 없습니다.',
+              style: TextStyle(
+                  color: Color(0xFF747474),
+                  fontWeight: FontWeight.w400,
+                  fontSize: 12,
+                  height: 1.5),
+            ),
           ),
         ),
       ],
     );
   }
-  Widget privacyPolicyCheckBox(){
+
+  Widget privacyPolicyCheckBox() {
     return Column(
       children: [
         InkWell(
@@ -165,14 +181,16 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
             children: [
               Icon(
                 Icons.check,
-                color: termsOfServiceNotifier.agreeToPrivacyPolicy ? Color(0xFF07BEB8) : Color(0xFFDDDDDD),
+                color: termsOfServiceNotifier.agreeToPrivacyPolicy
+                    ? Color(0xFF07BEB8)
+                    : Color(0xFFDDDDDD),
               ),
               Text.rich(
                 TextSpan(text: '개인정보 수집·이용 동의', children: [
                   WidgetSpan(
                       child: SizedBox(
-                        width: 4,
-                      )),
+                    width: 4,
+                  )),
                   TextSpan(
                     text: '(필수)',
                     style: TextStyle(
@@ -193,7 +211,9 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
             ],
           ),
         ),
-        SizedBox(height: 8,),
+        SizedBox(
+          height: 8,
+        ),
         Container(
           padding: EdgeInsets.fromLTRB(16, 16, 16, 16),
           decoration: BoxDecoration(
@@ -203,29 +223,42 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
           width: double.infinity,
           child: const SingleChildScrollView(
             child: Text(
-                '본 이용약관(이하 “이용약관"은 네이버 제트 주식회사 ZEPETO 앱 및 관련하여 제공하는 프로그램, 소프트웨어 등(이하 서비스" 또는 “ZEPETO” 및 본 이용약관의 적용을 받으며 ZEPETO 앱에서 업로드 및 다운로드, 공유되는 모든 정보 및 텍스트, 그래픽, 사진, 기타 자료(이하 통칭 “콘텐츠")에 대한 접근 및 이용에 관한 사항을 규정합니다. 본 이용약관에 동의하지 않는 경우 ZEPETO를 이용할 수 없습니다.'),
+              '본 이용약관(이하 “이용약관"은 네이버 제트 주식회사 ZEPETO 앱 및 관련하여 제공하는 프로그램, 소프트웨어 등(이하 서비스" 또는 “ZEPETO” 및 본 이용약관의 적용을 받으며 ZEPETO 앱에서 업로드 및 다운로드, 공유되는 모든 정보 및 텍스트, 그래픽, 사진, 기타 자료(이하 통칭 “콘텐츠")에 대한 접근 및 이용에 관한 사항을 규정합니다. 본 이용약관에 동의하지 않는 경우 ZEPETO를 이용할 수 없습니다.',
+              style: TextStyle(
+                  color: Color(0xFF747474),
+                  fontWeight: FontWeight.w400,
+                  fontSize: 12,
+                  height: 1.5),
+            ),
           ),
         ),
       ],
     );
   }
-  Widget startButton(){
+
+  Widget startButton() {
     return InkWell(
-      onTap: (){
-        if(termsOfServiceNotifier.allAgreement){
+      onTap: () {
+        if (termsOfServiceNotifier.allAgreement) {
           //버튼 클릭 이벤트 추가 해야 됩니다.
+          Navigator.pushNamed(context, '/TextFieldPage');
         }
       },
       child: Container(
         padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
         decoration: BoxDecoration(
-            color: termsOfServiceNotifier.allAgreement ?Color(0xFf07BEB8) : Color(0xFFDDDDDD) ,
+            color: termsOfServiceNotifier.allAgreement
+                ? Color(0xFf07BEB8)
+                : Color(0xFFDDDDDD),
             borderRadius: BorderRadius.circular(14)),
         child: const Center(
           child: Text(
             '동의하고 시작하기',
-            style:
-            TextStyle(color: Colors.white,fontWeight: FontWeight.w700 ,fontSize: 18, height: 1.5),
+            style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+                fontSize: 18,
+                height: 1.5),
           ),
         ),
       ),
