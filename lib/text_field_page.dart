@@ -6,9 +6,6 @@ import 'package:grapth/validator_builder.dart';
 class TextFieldPage extends StatelessWidget {
   const TextFieldPage({Key? key}) : super(key: key);
 
-  final nameValidation = ValidationBuilder().minLength(3).maxLength(4).build();
-  final passwordValidation = ValidationBuilder().minLength(8).maxLength(16).build();
-  final numberValidation = ValidationBuilder().minLength(6).maxLength(6).build();
 
   @override
   Widget build(BuildContext context) {
