@@ -15,8 +15,8 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
       AuthenticationNumberRestController();
   bool showIcon = false;
   //인증번호
-  int authenticationNumber = 12345;
-
+  String authenticationNumber = '12345';
+  bool disable = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,6 +90,7 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
                 textEditingController.text.isEmpty
                     ? showIcon = false
                     : showIcon = true;
+                disable = textEditingController.text != authenticationNumber;
                 setState(() {});
               },
               decoration: InputDecoration(
@@ -132,7 +133,7 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
         },
         child: Container(
             padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
-            color: Color(0xFFDDDDDD),
+            color: disable ? Color(0xFFDDDDDD) : Color(0xFF6AD8D4),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
