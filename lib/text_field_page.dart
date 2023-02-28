@@ -1,11 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:grapth/validator_builder.dart';
 
 class TextFieldPage extends StatelessWidget {
-  const TextFieldPage({Key? key}) : super(key: key);
+  TextFieldPage({super.key});
 
+  TextEditingController nameTextController = TextEditingController();
+  TextEditingController passwordTextController = TextEditingController();
+  TextEditingController socialSecurityNumberTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
