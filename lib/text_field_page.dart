@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:grapth/validator_builder.dart';
 
 class TextFieldPage extends StatelessWidget {
   const TextFieldPage({Key? key}) : super(key: key);
@@ -14,51 +15,26 @@ class TextFieldPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 20),
-
-              //이름 입력란
+              SizedBox(height: 40,),
+              //비밀 번호
               Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    '이름',
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Color(0xFF000000),
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'Pretendard',
-                        height: 1.5),
-                  ),
+                  Text('비밀번호',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: 'Pretendard',
+                          height: 1.5)),
                   TextField(
-                    keyboardType: TextInputType.name,
                     decoration: InputDecoration(
-                      hintText: '실명 입력',
-                      suffixIcon: Icon(Icons.abc_rounded),
-                      suffixIconColor: Color(0xFFDDDDDD),
-                    ),
+                        hintText: '영문, 숫자, 특수문자의 조합 (8-16자)',
+                        suffixIcon: Icon(Icons.add)),
                   ),
                 ],
               ),
 
-              //주의 사항
-              Row(
-                children: [
-                  Icon(
-                    Icons.add_a_photo,
-                    size: 14,
-                  ),
-                  Text(
-                    '잘못 입력한 경우 운동 배정이 되지 않으니 주의해주세요.',
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Color(0xFF07BEB8),
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'Pretendard',
-                        height: 1.5),
-                  )
-                ],
-              ),
 
               SizedBox(height: 20),
 
@@ -107,21 +83,47 @@ class TextFieldPage extends StatelessWidget {
               ),
               SizedBox(height: 20),
 
-              //비밀 번호
+              //이름 입력란
               Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('비밀번호',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: 'Pretendard',
-                          height: 1.5)),
+                  Text(
+                    '이름',
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Color(0xFF000000),
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Pretendard',
+                        height: 1.5),
+                  ),
                   TextField(
+                    keyboardType: TextInputType.name,
                     decoration: InputDecoration(
-                        hintText: '영문, 숫자, 특수문자의 조합 (8-16자)',
-                        suffixIcon: Icon(Icons.add)),
+                      hintText: '실명 입력',
+                      suffixIcon: Icon(Icons.abc_rounded),
+                      suffixIconColor: Color(0xFFDDDDDD),
+                    ),
+                  ),
+                  //주의 사항
+                  SizedBox(height: 8,),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.add_a_photo,
+                        size: 14,
+                        color: Color(0xFF07BEB8),
+                      ),
+                      Text(
+                        '잘못 입력한 경우 운동 배정이 되지 않으니 주의해주세요.',
+                        style: TextStyle(
+                            fontSize: 12,
+                            color: Color(0xFF07BEB8),
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'Pretendard',
+                            height: 1.5),
+                      )
+                    ],
                   ),
                 ],
               ),
