@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:grapth/pages/already_signed_up_account_page.dart';
 import 'package:grapth/pages/authentication_number.dart';
 import 'package:grapth/pages/phone_number_page.dart';
+import 'package:grapth/pages/sign_in_textfields.dart';
 import 'package:grapth/terms_of_service/terms_of_service_page.dart';
-import 'package:grapth/sign_in_textfields.dart';
 
 void main() {
   runApp(MyApp());
