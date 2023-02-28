@@ -25,16 +25,13 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
         body: Container(
           color: Color(0xFFFFFFFF),
-          height: double.infinity,
-          margin: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+            height: double.infinity,
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+              padding: EdgeInsets.fromLTRB(16, 64, 16, 0),
               child: Column(
-                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
