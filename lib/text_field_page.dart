@@ -13,6 +13,7 @@ class TextFieldPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        height: double.infinity,
         padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
         color: Color(0xFFFFFFFF),
         child: SingleChildScrollView(
