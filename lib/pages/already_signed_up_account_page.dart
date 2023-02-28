@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AlreadySignedUpAccountPage extends StatelessWidget {
   AlreadySignedUpAccountPage({Key? key}) : super(key: key);
   String userid = '홍*동';
-
+  String phoneNumber = '010-1234-5678';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +32,7 @@ class AlreadySignedUpAccountPage extends StatelessWidget {
                     height: 16,
                   ),
                   Text(
-                    '010-1234-5678로\n'
+                    '$phoneNumber로\n'
                         '가입한 계정을 찾았어요.',
                     style: TextStyle(
                       color: Color(0xFF545454),
