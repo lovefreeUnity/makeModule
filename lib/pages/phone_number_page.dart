@@ -60,6 +60,7 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                   ),
                   // TextFormField(),
                   TextField(
+                    controller: textEditingController,
                     keyboardType: TextInputType.number,
                     onChanged: (text) {
                       textEditingController.text.isEmpty
