@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TextFieldPage extends StatefulWidget {
   const TextFieldPage({Key? key}) : super(key: key);
@@ -10,10 +11,11 @@ class TextFieldPage extends StatefulWidget {
 }
 
 class _TextFieldPageState extends State<TextFieldPage> {
-
+  //아이콘on off 및 텍스트 받아오기 위한 텍스트 컨트롤러
   TextEditingController nameTextController = TextEditingController();
   TextEditingController passwordTextController = TextEditingController();
-  TextEditingController socialSecurityNumberTextController = TextEditingController();
+  TextEditingController socialSecurityFrontNumberTextController = TextEditingController();
+  TextEditingController socialSecurityBackNumberTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,9 @@ class _TextFieldPageState extends State<TextFieldPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 40,),
+              SizedBox(
+                height: 40,
+              ),
               //비밀 번호
               Column(
                 mainAxisSize: MainAxisSize.min,
@@ -38,9 +42,24 @@ class _TextFieldPageState extends State<TextFieldPage> {
                           fontFamily: 'Pretendard',
                           height: 1.5)),
                   TextField(
+                    controller: passwordTextController,
+                    onChanged: (text) {
+                      setState(() {});
+                    },
                     decoration: InputDecoration(
                         hintText: '영문, 숫자, 특수문자의 조합 (8-16자)',
-                        suffixIcon: Icon(Icons.add)),
+                        suffixIcon: passwordTextController.text.isNotEmpty
+                            ? InkWell(
+                                onTap: () {
+                                  passwordTextController.clear();
+                                  setState(() {});
+                                },
+                                child: Icon(
+                                  Icons.add,
+                                  color: Color(0xFFDDDDDD),
+                                ),
+                              )
+                            : null),
                   ),
                 ],
               ),
@@ -60,13 +79,24 @@ class _TextFieldPageState extends State<TextFieldPage> {
                   Row(
                     children: [
                       Expanded(
+                        //주민 번호 앞자리
                         child: TextField(
+                          controller: socialSecurityFrontNumberTextController,
+                          onChanged: (text) {
+                            setState(() {});
+                          },
                           keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
-                            hintText: '생년월일',
-                            suffixIcon: Icon(Icons.abc_rounded),
-                            suffixIconColor: Color(0xFFDDDDDD),
-                          ),
+                              hintText: '생년월일',
+                              suffixIcon: socialSecurityFrontNumberTextController.text.isNotEmpty
+                                  ? InkWell(
+                                      onTap: () {
+                                        socialSecurityFrontNumberTextController.clear();
+                                        setState(() {});
+                                      },
+                                      child: Icon(Icons.abc_rounded))
+                                  : null,
+                              suffixIconColor: Color(0xFFDDDDDD)),
                         ),
                       ),
                       Padding(
@@ -77,8 +107,10 @@ class _TextFieldPageState extends State<TextFieldPage> {
                           color: Color(0xFF545454),
                         ),
                       ),
+                      //주민 번호 뒷자리
                       Expanded(
                         child: TextField(
+                          controller: socialSecurityBackNumberTextController,
                           keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
                             hintText: '0',
@@ -106,15 +138,29 @@ class _TextFieldPageState extends State<TextFieldPage> {
                         height: 1.5),
                   ),
                   TextField(
+                    controller: nameTextController,
                     keyboardType: TextInputType.name,
+                    onChanged: (text) {
+                      setState(() {});
+                    },
                     decoration: InputDecoration(
                       hintText: '실명 입력',
-                      suffixIcon: Icon(Icons.abc_rounded),
+                      suffixIcon: nameTextController.text.isNotEmpty
+                          ? InkWell(
+                              onTap: () {
+                                nameTextController.clear();
+                                setState(() {});
+                              },
+                              child: Icon(Icons.abc_rounded),
+                            )
+                          : null,
                       suffixIconColor: Color(0xFFDDDDDD),
                     ),
                   ),
                   //주의 사항
-                  SizedBox(height: 8,),
+                  SizedBox(
+                    height: 8,
+                  ),
                   Row(
                     children: [
                       Icon(
@@ -140,8 +186,8 @@ class _TextFieldPageState extends State<TextFieldPage> {
         ),
       ),
       bottomSheet: InkWell(
-        onTap: (){
-          Navigator.pushNamed(context , '/TextFieldPage/TermsOfServicePage');
+        onTap: () {
+          Navigator.pushNamed(context, '/TextFieldPage/TermsOfServicePage');
         },
         child: Container(
             padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
@@ -158,8 +204,7 @@ class _TextFieldPageState extends State<TextFieldPage> {
                       height: 1.5),
                 ),
               ],
-            )
-        ),
+            )),
       ),
     );
   }
