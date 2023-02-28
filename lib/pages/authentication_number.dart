@@ -16,8 +16,6 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
   AuthenticationNumberRestController authenticationNumberRestController =
       AuthenticationNumberRestController();
   bool showIcon = false;
-  //인증번호
-  String authenticationNumber = '12345';
   final validationBuilder = ValidationBuilder().minLength(5).maxLength(5).build();//최소, 최대 길이 등은 나중에 기획이 더 나와야 한다.
   @override
   Widget build(BuildContext context) {
@@ -133,8 +131,10 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
       ),
       bottomSheet: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, '/TermsOfServicePage');
-          // Navigator.pushNamed(context , '/AlreadySignedUpAccountPage');
+          if(validationBuilder(textEditingController.text) == null){
+            Navigator.pushNamed(context, '/TermsOfServicePage');
+            // Navigator.pushNamed(context , '/AlreadySignedUpAccountPage');
+          }
         },
         child: Container(
             padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
