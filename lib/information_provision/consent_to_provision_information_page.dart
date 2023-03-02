@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grapth/information_provision/information_bottom.dart';
-import 'package:grapth/information_provision/information_provision_body.dart';
+import 'package:grapth/information_provision/information_body.dart';
 import 'package:grapth/information_provision/information_title.dart';
 
 class ConsentToProvisionInformationPage extends StatefulWidget {
