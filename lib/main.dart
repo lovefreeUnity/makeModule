@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grapth/pages/already_signed_up_account_page.dart';
 import 'package:grapth/pages/authentication_number.dart';
 import 'package:grapth/pages/phone_number_page.dart';
-import 'package:grapth/pages/sign_in_textfields.dart';
+import 'package:grapth/pages/sign_up_textfields.dart';
 import 'package:grapth/terms_of_service/terms_of_service_page.dart';
 
 void main() {
@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
         '/AuthenticationNumber' : (context) => AuthenticationNumber(),
         '/TermsOfServicePage' : (context) => TermsOfServicePage(),
         '/AlreadySignedUpAccountPage' : (context) => AlreadySignedUpAccountPage(),
-        '/SignInTextFieldsPage' : (context) => SignInTextFieldsPage()
+        '/SignInTextFieldsPage' : (context) => SignUpTextFieldsPage()
       },
     );
   }
