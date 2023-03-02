@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:grapth/validator_builder.dart';
 
 class AuthenticationNumber extends StatefulWidget {
   const AuthenticationNumber({Key? key}) : super(key: key);
@@ -14,7 +15,8 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
   TextEditingController textEditingController = TextEditingController();
   AuthenticationNumberRestController authenticationNumberRestController = AuthenticationNumberRestController();
   bool showIcon = false;
-  bool bottomSheetDisable = true;
+  String errorText = '';
+  final validationBuilder = ValidationBuilder().minLength(5).maxLength(5).build();//지금은 임시로 5글자만 가능하게 넣어 두었다.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,18 +90,17 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
                 textEditingController.text.isEmpty
                     ? showIcon = false
                     : showIcon = true;
-                if(textEditingController.text.length > 5){//인증 번호 조건에 따라 수정 되어야 할 부분
-                  bottomSheetDisable = false;
-                }
                 setState(() {});
               },
               decoration: InputDecoration(
                 hintText: '인증번호를 입력해주세요.',
+                errorText: errorText.isNotEmpty?'':null,
                 suffixIcon: showIcon
                     ? InkWell(
                         onTap: () {
                           textEditingController.clear();
                           showIcon = false;
+                          errorText = '';
                           setState(() {});
                         },
                         child: Icon(
@@ -116,7 +117,7 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
             ),
             //에러 텍스트
             Text(
-              '인증번호를 다시 확인해주세요.',
+              errorText,
               style: TextStyle(
                   fontSize: 12,
                   color: Color(0xFfE74C3C),
@@ -128,14 +129,17 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
       ),
       bottomSheet: InkWell(
         onTap: () {
-          if(bottomSheetDisable==false){
-            Navigator.pushNamed(context, '/TermsOfServicePage'); // 새로운 계정일 시 서비스 이용 약관 화면
-            // Navigator.pushNamed(context , '/AlreadySignedUpAccountPage'); // 동일 계정이 이미 있을시 화면
+          if(validationBuilder(textEditingController.text) == null){
+            // Navigator.pushNamed(context, '/TermsOfServicePage');
+            Navigator.pushNamed(context , '/AlreadySignedUpAccountPage');
+          }else{
+            errorText = validationBuilder(textEditingController.text)!;
+            setState(() {});
           }
         },
         child: Container(
             padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
-            color: bottomSheetDisable ? Color(0xFFDDDDDD) : Color(0xFF6AD8D4),
+            color: validationBuilder(textEditingController.text) != null ? Color(0xFFDDDDDD) : Color(0xFF6AD8D4),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -148,7 +152,8 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
                       height: 1.5),
                 ),
               ],
-            ),),
+            ),
+        ),
       ),
     );
   }
