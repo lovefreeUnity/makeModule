@@ -16,7 +16,7 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
   AuthenticationNumberRestController authenticationNumberRestController = AuthenticationNumberRestController();
   bool showIcon = false;
   String errorText = '';
-  final validationBuilder = ValidationBuilder().minLength(5).maxLength(5).build();//지금은 임시로 5글자만 가능하게 넣어 두었다.
+  final validationBuilder = ValidationBuilder().minLength(5).maxLength(5).build();//지금은 임시로 글자수 5개로 넣어두었다.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,7 +130,6 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
       bottomSheet: InkWell(
         onTap: () {
           if(validationBuilder(textEditingController.text) == null){
-            // Navigator.pushNamed(context, '/TermsOfServicePage');
             Navigator.pushNamed(context , '/AlreadySignedUpAccountPage');
           }else{
             errorText = validationBuilder(textEditingController.text)!;
@@ -152,8 +151,7 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
                       height: 1.5),
                 ),
               ],
-            ),
-        ),
+            )),
       ),
     );
   }

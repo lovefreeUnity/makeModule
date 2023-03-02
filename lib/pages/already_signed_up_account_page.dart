@@ -80,7 +80,9 @@ class AlreadySignedUpAccountPage extends StatelessWidget {
                   height: 24,
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, '/TermsOfServicePage');
+                  },
                   child: Text(
                     '제 계정이 아니에요',
                     style: TextStyle(
