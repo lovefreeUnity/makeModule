@@ -13,10 +13,14 @@ class AuthenticationNumber extends StatefulWidget {
 
 class _AuthenticationNumberState extends State<AuthenticationNumber> {
   TextEditingController textEditingController = TextEditingController();
-  AuthenticationNumberRestController authenticationNumberRestController = AuthenticationNumberRestController();
+  AuthenticationNumberRestController authenticationNumberRestController =
+      AuthenticationNumberRestController();
   bool showIcon = false;
   String errorText = '';
-  final validationBuilder = ValidationBuilder().minLength(5).maxLength(5).build();//지금은 임시로 글자수 5개로 넣어두었다.
+  final validationBuilder = ValidationBuilder()
+      .minLength(5)
+      .maxLength(5)
+      .build(); //지금은 임시로 글자수 5개로 넣어두었다.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,7 +98,7 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
               },
               decoration: InputDecoration(
                 hintText: '인증번호를 입력해주세요.',
-                errorText: errorText.isNotEmpty?'':null,
+                errorText: errorText.isNotEmpty ? '' : null,
                 suffixIcon: showIcon
                     ? InkWell(
                         onTap: () {
@@ -111,9 +115,6 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
                     : null,
                 suffixIconColor: Color(0xFFDDDDDD),
               ),
-              onTapOutside: (pointerDownEvent) {
-                FocusScope.of(context).unfocus();
-              },
             ),
             //에러 텍스트
             Text(
@@ -129,16 +130,18 @@ class _AuthenticationNumberState extends State<AuthenticationNumber> {
       ),
       bottomSheet: InkWell(
         onTap: () {
-          if(validationBuilder(textEditingController.text) == null){
-            Navigator.pushNamed(context , '/AlreadySignedUpAccountPage');
-          }else{
+          if (validationBuilder(textEditingController.text) == null) {
+            Navigator.pushNamed(context, '/AlreadySignedUpAccountPage');
+          } else {
             errorText = validationBuilder(textEditingController.text)!;
             setState(() {});
           }
         },
         child: Container(
             padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
-            color: validationBuilder(textEditingController.text) != null ? Color(0xFFDDDDDD) : Color(0xFF6AD8D4),
+            color: validationBuilder(textEditingController.text) != null
+                ? Color(0xFFDDDDDD)
+                : Color(0xFF6AD8D4),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
